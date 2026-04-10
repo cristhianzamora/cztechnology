@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zamora Tech | Ventas y Servicio Técnico</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        :root {
+            --naranja: #FF6600;
+            --blanco: #ffffff;
+            --gris-claro: #f8f9fa;
+            --oscuro: #212529;
+            --whatsapp: #25D366;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--blanco); color: var(--oscuro); line-height: 1.6; }
+
+        /* Navegación */
+        nav {
+            background: var(--blanco);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo { font-size: 1.6rem; font-weight: 800; color: var(--naranja); letter-spacing: 1px; }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--oscuro);
+            margin-left: 25px;
+            font-weight: 600;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover { color: var(--naranja); }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            height: 450px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero h1 { font-size: 3.5rem; margin-bottom: 15px; }
+        .hero p { font-size: 1.2rem; max-width: 700px; margin-bottom: 30px; }
+
+        /* Contenedores */
+        .container { padding: 60px 8%; }
+        h2 { text-align: center; margin-bottom: 50px; font-size: 2rem; position: relative; text-transform: uppercase; }
+        h2::after { content: ''; width: 60px; height: 4px; background: var(--naranja); position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); }
+
+        /* SECCIÓN 1: TARIFARIO DE MANTENIMIENTO */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .price-card {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 15px;
+            padding: 30px;
+            transition: 0.4s;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+        }
+
+        .price-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--naranja);
+            box-shadow: 0 15px 30px rgba(255, 102, 0, 0.1);
+        }
+
+        .price-card h3 { 
+            font-size: 1.4rem; 
+            margin-bottom: 20px; 
+            color: var(--naranja); 
+            display: flex; 
+            align-items: center; 
+            gap: 10px;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .price-item:last-child { border-bottom: none; }
+        .val { font-weight: 800; color: #333; }
+
+        .note {
+            background: #fff5ed;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            color: #666;
+            border-left: 4px solid var(--naranja);
+        }
+
+        /* SECCIÓN 2: PRODUCTOS */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            position: relative;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #eee;
+            overflow: hidden;
+        }
+
+        .product-card i { color: #ddd; margin-bottom: 15px; }
+        .product-card h4 { font-size: 1rem; margin-bottom: 10px; }
+
+        .overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 102, 0, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: 0.4s;
+            padding: 15px;
+            color: white;
+        }
+
+        .product-card:hover .overlay { opacity: 1; }
+
+        /* Botones */
+        .btn {
+            background: var(--naranja);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .btn:hover { background: #e65c00; transform: scale(1.05); }
+
+        .btn-ws {
+            background: var(--whatsapp);
+            font-size: 0.9rem;
+            margin-top: 15px;
+        }
+
+        /* Footer */
+        footer { background: #1a1a1a; color: white; padding: 60px 8% 20px; }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-grid h4 { color: var(--naranja); margin-bottom: 20px; }
+        .social a { color: white; font-size: 1.5rem; margin-right: 15px; }
+        .social a:hover { color: var(--naranja); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">ZAMORA TECH</div>
+        <div class="nav-links">
+            <a href="#inicio">Inicio</a>
+            <a href="#precios">Precios</a>
+            <a href="#productos">Tienda</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+    </nav>
+
+    <header class="hero" id="inicio">
+        <h1>Servicio Técnico Especializado</h1>
+        <p>Soluciones rápidas para laptops y PCs. Mantenimiento, repuestos y optimización garantizada.</p>
+        <a href="#precios" class="btn">Ver Lista de Precios</a>
+    </header>
+
+    <section class="container" id="precios">
+        <h2>Consulta de Precios</h2>
+        <div class="pricing-grid">
+            <div class="price-card">
+                <h3><i class="fas fa-desktop"></i> Sistemas Operativos</h3>
+                <div class="price-item"><span>Windows / Linux</span> <span class="val">$20.00</span></div>
+                <div class="price-item"><span>macOS</span> <span class="val">$40.00</span></div>
+                <div class="price-item"><span>Instalar Win + Office (Activación)</span> <span class="val">$10.00</span></div>
+                <div class="note"><strong>Opcional:</strong> Respaldar información por solo $5.00 adicionales.</div>
+                <a href="https://wa.me/593XXXXXXXXX?text=Cotizar+Sistemas" class="btn btn-ws"><i class="fab fa-whatsapp"></i> Cotizar este servicio</a>
+            </div>
+
+            <div class="price-card">
+                <h3><i class="fas fa-tools"></i> Mantenimiento Físico</h3>
+                <div class="price-item"><span>Limpieza Laptop (Hardware)</span> <span class="val">$15.00</span></div>
+                <div class="price-item"><span>Limpieza CPU (Escritorio)</span> <span class="val">$10.00</span></div>
+                <div class="price-item"><span>Pasta Térmica Alta Calidad</span> <span class="val">Incluido</span></div>
+                <div class="note">Ideal para equipos que se calientan o se apagan de repente.</div>
+                <a href="https://wa.me/593XXXXXXXXX?text=Cotizar+Limpieza" class="btn btn-ws"><i class="fab fa-whatsapp"></i> Cotizar este servicio</a>
+            </div>
+
+            <div class="price-card">
+                <h3><i class="fas fa-rocket"></i> Optimización y Otros</h3>
+                <div class="price-item"><span>Eliminar Virus</span> <span class="val">$5.00</span></div>
+                <div class="price-item"><span>Optimizar Sistema Operativo</span> <span class="val">$10.00</span></div>
+                <div class="price-item"><span>Instalar Programas Básicos</span> <span class="val">$10.00</span></div>
+                <div class="note">Mejoramos el rendimiento de computadoras lentas al instante.</div>
+                <a href="https://wa.me/593XXXXXXXXX?text=Cotizar+Optimizacion" class="btn btn-ws"><i class="fab fa-whatsapp"></i> Cotizar este servicio</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="productos" style="background-color: var(--gris-claro);">
+        <h2>Venta de Componentes</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <i class="fas fa-hdd fa-3x"></i>
+                <h4>Discos SSD / HDD</h4>
+                <div class="overlay">
+                    <p>SATA, M.2, NVMe de todas las capacidades.</p>
+                    <a href="#" class="btn" style="background:white; color:var(--naranja); font-size:0.8rem;">COTIZAR</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <i class="fas fa-memory fa-3x"></i>
+                <h4>Memorias RAM</h4>
+                <div class="overlay">
+                    <p>DDR3, DDR4, DDR5 para Laptop y PC.</p>
+                    <a href="#" class="btn" style="background:white; color:var(--naranja); font-size:0.8rem;">COTIZAR</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <i class="fas fa-plug fa-3x"></i>
+                <h4>Adaptadores / Fuentes</h4>
+                <div class="overlay">
+                    <p>Cargadores de laptop y fuentes de PC.</p>
+                    <a href="#" class="btn" style="background:white; color:var(--naranja); font-size:0.8rem;">COTIZAR</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <i class="fas fa-keyboard fa-3x"></i>
+                <h4>Teclados y Mouse</h4>
+                <div class="overlay">
+                    <p>Equipos ergonómicos y Gamer.</p>
+                    <a href="#" class="btn" style="background:white; color:var(--naranja); font-size:0.8rem;">COTIZAR</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <i class="fas fa-fan fa-3x"></i>
+                <h4>Cooler / Pasta Térmica</h4>
+                <div class="overlay">
+                    <p>Enfriamiento profesional para tu equipo.</p>
+                    <a href="#" class="btn" style="background:white; color:var(--naranja); font-size:0.8rem;">COTIZAR</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contacto">
+        <div class="footer-grid">
+            <div>
+                <h4>SOBRE ZAMORA TECH</h4>
+                <p>Soporte técnico en repotenciación y mantenimiento preventivo/correctivo de equipos informáticos en Portoviejo.</p>
+            </div>
+            <div>
+                <h4>CONTACTO</h4>
+                <p><i class="fas fa-phone"></i> +593 96 034 4187</p>
+                <p><i class="fas fa-envelope"></i> zamoraintriago.10@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Portoviejo, Manabí, Ecuador</p>
+            </div>
+            <div>
+                <h4>SÍGUENOS</h4>
+                <div class="social">
+                    <a href="https://www.facebook.com/cztechnology7" target="_blank" CZ Technology="Síguenos en Facebook">
+                        <i class="fab fa-facebook"></i>
+                </a>
+    
+                     <a href="https://www.instagram.com/cztechnology7" target="_blank" CZ Technology="Síguenos en Instagram">
+                <i class="fab fa-instagram"></i>
+                </a>
+    
+                    <a href="https://www.tiktok.com/@_cristhian009" target="_blank" CZ Technology="Síguenos en TikTok">
+                <i class="fab fa-tiktok"></i>
+                </a>
+                </div>
+                
+            </div>
+        </div>
+        <div style="text-align: center; padding-top: 30px; border-top: 1px solid #333; font-size: 0.8rem;">
+            &copy; 2026 Zamora Tech. Todos los derechos reservados.
+        </div>
+    </footer>
+
+</body>
+</html>
