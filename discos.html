@@ -2,116 +2,260 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Catálogo de Discos - Zamora Tech</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Discos | Zamora Tech</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            --naranja: #FF6600;
+            --naranja-dark: #e65c00;
+            --oscuro: #1a1a1a;
+            --blanco: #ffffff;
+            --gris-fondo: #f8f9fa;
+            --sombra: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--gris-fondo); color: var(--oscuro); padding-bottom: 80px; }
+
+        /* Header Premium */
+        header {
+            background: var(--blanco);
+            padding: 15px 5%;
+            box-shadow: var(--sombra);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .btn-volver {
+            text-decoration: none;
+            color: var(--oscuro);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .logo-text { font-weight: 800; color: var(--naranja); font-size: 1.2rem; }
+
+        /* Barra de Filtros Responsiva */
+        .filter-section {
+            background: var(--blanco);
+            margin: 20px 5%;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: var(--sombra);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .filter-group { display: flex; flex-direction: column; gap: 5px; }
+        .filter-group label { font-size: 0.8rem; font-weight: 700; color: #555; text-transform: uppercase; }
         
-        :root { --naranja: #FF6600; --oscuro: #212529; --gris: #f4f4f4; }
-        body { font-family: 'Segoe UI', sans-serif; background: white; margin: 0; padding: 20px; }
-        .header-catalogo { display: flex; align-items: center; gap: 20px; border-bottom: 2px solid var(--naranja); padding-bottom: 10px; margin-bottom: 30px; }
-        .btn-volver { text-decoration: none; color: var(--oscuro); font-weight: bold; border: 1px solid #ccc; padding: 5px 15px; border-radius: 5px; }
-        
-        /* Estilos de Filtros */
-        .filtros { display: flex; gap: 20px; background: var(--gris); padding: 15px; border-radius: 10px; margin-bottom: 30px; flex-wrap: wrap; }
-        .filtros select { padding: 8px; border-radius: 5px; border: 1px solid #ccc; outline: none; cursor: pointer; }
+        .filter-group select {
+            padding: 10px;
+            border-radius: 8px;
+            border: 2px solid #eee;
+            outline: none;
+            background: #fff;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .filter-group select:focus { border-color: var(--naranja); }
 
         /* Grid de Productos */
-        .productos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
-        .card-producto { border: 1px solid #eee; padding: 20px; border-radius: 10px; text-align: center; transition: 0.3s; background: white; }
-        .card-producto:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.1); transform: translateY(-5px); }
-        .precio { color: var(--naranja); font-weight: bold; font-size: 1.3rem; display: block; margin: 10px 0; }
-        .btn-compra { background: #25D366; color: white; text-decoration: none; padding: 10px 15px; border-radius: 5px; font-weight: bold; display: block; }
-    
+        .catalog-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+            padding: 0 5%;
+        }
+
+        .product-card {
+            background: var(--blanco);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: 0.3s ease;
+            border: 1px solid #efefef;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .icon-circle {
+            background: #fff5ed;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            color: var(--naranja);
+            font-size: 2rem;
+        }
+
+        .product-card h3 { font-size: 1rem; margin-bottom: 5px; font-weight: 700; }
+        .product-card p { font-size: 0.8rem; color: #888; margin-bottom: 15px; }
+
+        .price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--oscuro);
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .btn-ws-card {
+            background: #25d366;
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 8px;
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .btn-ws-card:hover { background: #128c7e; }
+
+        /* Botón Flotante WhatsApp con Pulso */
+        .ws-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 25px;
+            right: 25px;
+            background: #25d366;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 2px 4px 10px rgba(0,0,0,0.3);
+            z-index: 2000;
+            text-decoration: none;
+            animation: pulse-ws 2s infinite;
+        }
+
+        @keyframes pulse-ws {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* Responsive movil */
+        @media (max-width: 480px) {
+            .catalog-container { grid-template-columns: 1fr; }
+            .filter-section { margin: 15px 5%; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="header-catalogo">
-        <a href="index.html" class="btn-volver"><i class="fas fa-arrow-left"></i> Volver</a>
-        <h1>Catálogo de Discos</h1>
-    </div>
+    <header>
+        <a href="index.html" class="btn-volver">
+            <i class="fas fa-chevron-left"></i> VOLVER
+        </a>
+        <div class="logo-text">ZAMORA TECH</div>
+    </header>
 
-    <div class="filtros">
-        <div>
-            <label>Marca:</label>
-            <select id="filtroMarca">
-                <option value="todos">Todas las Marcas</option>
+    <section class="filter-section">
+        <div class="filter-group">
+            <label>Marca</label>
+            <select id="f-marca">
+                <option value="todos">Todas</option>
                 <option value="kingston">Kingston</option>
                 <option value="crucial">Crucial</option>
-                <option value="western">Western Digital</option>
+                <option value="wd">Western Digital</option>
             </select>
         </div>
-        <div>
-            <label>Capacidad:</label>
-            <select id="filtroCapacidad">
-                <option value="todos">Todas las Capacidades</option>
-                <option value="240gb">240GB</option>
-                <option value="480gb">480GB</option>
-                <option value="1tb">1TB</option>
+        <div class="filter-group">
+            <label>Capacidad</label>
+            <select id="f-capa">
+                <option value="todos">Todas</option>
+                <option value="240gb">240 GB</option>
+                <option value="480gb">480 GB</option>
+                <option value="1tb">1 TB</option>
             </select>
         </div>
-    </div>
+    </section>
 
-    <div class="productos-grid" id="listaProductos">
+    <main class="catalog-container">
         
-        <div class="card-producto" data-marca="kingston" data-capacidad="480gb">
-            <i class="fas fa-hdd fa-4x" style="color:#ddd"></i>
-            <h3>SSD Kingston 480gb A400</h3>
-            <p>SSD SATA 2.5"</p>
-            <span class="precio">$100.00</span>
-            <a href="https://wa.me/593960344187" class="btn-compra">Comprar</a>
+        <div class="product-card" data-marca="kingston" data-capacidad="480gb">
+            <div class="icon-circle"><i class="fas fa-hdd"></i></div>
+            <h3>SSD Kingston A400</h3>
+            <p>SATA III - 480GB</p>
+            <span class="price">$35.00</span>
+            <a href="https://wa.me/593960344187?text=Hola Zamora Tech quiero Cotizar+Kingston+480GB" class="btn-ws-card" target="_blank">Pedir por WhatsApp</a>
         </div>
 
-        <div class="card-producto" data-marca="crucial" data-capacidad="1tb">
-            <i class="fas fa-microchip fa-4x" style="color:#ddd"></i>
-            <h3>SSD M.2 Crucial 1tb P3</h3>
-            <p>NVMe PCIe Gen3</p>
-            <span class="precio">$200.00</span>
-            <a href="https://wa.me/593960344187" class="btn-compra">Comprar</a>
+        <div class="product-card" data-marca="crucial" data-capacidad="1tb">
+            <div class="icon-circle"><i class="fas fa-bolt"></i></div>
+            <h3>M.2 NVMe Crucial P3</h3>
+            <p>High Speed - 1TB</p>
+            <span class="price">$75.00</span>
+            <a href="https://wa.me/593960344187?text=Hola Zamora Tech quiero Cotizar+Crucial+1TB" class="btn-ws-card" target="_blank">Pedir por WhatsApp</a>
         </div>
 
-        <div class="card-producto" data-marca="kingston" data-capacidad="240gb">
-            <i class="fas fa-hdd fa-4x" style="color:#ddd"></i>
-            <h3>SSD Kingston 240gb A400</h3>
-            <p>SSD SATA 2.5"</p>
-            <span class="precio">$50.00</span>
-            <a href="https://wa.me/593960344187" class="btn-compra">Comprar</a>
+        <div class="product-card" data-marca="kingston" data-capacidad="240gb">
+            <div class="icon-circle"><i class="fas fa-hdd"></i></div>
+            <h3>SSD Kingston A400</h3>
+            <p>SATA III - 240GB</p>
+            <span class="price">$25.00</span>
+            <a href="https://wa.me/593960344187?text=Hola Zamora Tech quiero Cotizar+Kingston+240GB" class="btn-ws-card" target="_blank">Pedir por WhatsApp</a>
         </div>
 
-    </div>
+    </main>
+
+    <a href="https://wa.me/593960344187" class="ws-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <script>
-        const filtroMarca = document.getElementById('filtroMarca');
-        const filtroCapacidad = document.getElementById('filtroCapacidad');
-        const productos = document.querySelectorAll('.card-producto');
+        document.addEventListener('DOMContentLoaded', () => {
+            const selectMarca = document.getElementById('f-marca');
+            const selectCapa = document.getElementById('f-capa');
+            const productos = document.querySelectorAll('.product-card');
 
-        function aplicarFiltros() {
-            const m = filtroMarca.value;
-            const c = filtroCapacidad.value;
+            function ejecutarFiltro() {
+                const m = selectMarca.value;
+                const c = selectCapa.value;
 
-            productos.forEach(p => {
-                const pMarca = p.getAttribute('data-marca');
-                const pCapacidad = p.getAttribute('data-capacidad');
+                productos.forEach(card => {
+                    const cMarca = card.getAttribute('data-marca');
+                    const cCapa = card.getAttribute('data-capacidad');
 
-                const cumpleMarca = (m === 'todos' || m === pMarca);
-                const cumpleCapacidad = (c === 'todos' || c === pCapacidad);
+                    const matchMarca = (m === 'todos' || m === cMarca);
+                    const matchCapa = (c === 'todos' || c === cCapa);
 
-                if (cumpleMarca && cumpleCapacidad) {
-                    p.style.display = 'block';
-                } else {
-                    p.style.display = 'none';
-                }
-            });
-        }
+                    if (matchMarca && matchCapa) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
 
-        filtroMarca.addEventListener('change', aplicarFiltros);
-        filtroCapacidad.addEventListener('change', aplicarFiltros);
-  
+            selectMarca.addEventListener('change', ejecutarFiltro);
+            selectCapa.addEventListener('change', ejecutarFiltro);
+        });
     </script>
-<a href="https://wa.me/593960344187?text=Hola Zamora Tech,%20necesito%20información%20sobre%20un%20servicio%20técnico." 
-   class="whatsapp-float" 
-   target="_blank">
-    <i class="fab fa-whatsapp my-float"></i>
-</a>
+
 </body>
 </html>
