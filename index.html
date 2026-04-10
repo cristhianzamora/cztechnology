@@ -6,6 +6,46 @@
     <title>Zamora Tech | Ventas y Servicio Técnico</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <style>
+        /* Estilos para el botón flotante */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 10000; /* Asegura que esté por encima de todo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    background-color: #128c7e;
+    transform: scale(1.1); /* Crece un poquito al pasar el mouse */
+}
+
+.my-float {
+    margin-top: 0px;
+}
+
+/* Animación de entrada */
+@keyframes pulse-green {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.whatsapp-float {
+    animation: pulse-green 2s infinite;
+}
         :root {
             --naranja: #FF6600;
             --blanco: #ffffff;
@@ -214,7 +254,7 @@
             <div class="price-card">
                 <h3><i class="fas fa-desktop"></i> Instalación de Sistemas Operativos</h3>
                 <div class="price-item"><span>Windows / Linux</span> <span class="val">$20.00</span></div>
-                <div class="price-item"><span>macOS</span> <span class="val">$40.00</span></div>
+                <div class="price-item"><span>MacOS</span> <span class="val">$40.00</span></div>
                 <div class="note"><strong>Opcional:</strong> Respaldar información por solo $5.00 adicionales.</div>
                 <a href="https://wa.me/593960344187?text=Cotizar+Sistemas" class="btn btn-ws"><i class="fab fa-whatsapp"></i> Cotizar este servicio</a>
             </div>
@@ -321,6 +361,10 @@
             &copy; 2026 Zamora Tech. Todos los derechos reservados.
         </div>
     </footer>
-
+<a href="https://wa.me/593XXXXXXXXX?text=Hola,%20necesito%20información%20sobre%20un%20servicio%20técnico." 
+   class="whatsapp-float" 
+   target="_blank">
+    <i class="fab fa-whatsapp my-float"></i>
+</a>
 </body>
 </html>
