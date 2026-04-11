@@ -194,8 +194,26 @@
             padding: 15px;
             color: white;
         }
-
+        .note-domicilio {
+            background: var(--naranja);;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            color: #080501;
+            border-left: 4px solid var(--naranja);
+            border-right: 4px solid var(--naranja)
+        }
         .product-card:hover .overlay { opacity: 1; }
+        /* SECCIÓN PORTAFOLIOS */
+        .portafolios-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .portafolios-item { background: white; border-radius: 15px; overflow: hidden; border: 1px solid #eee; transition: 0.3s; box-shadow: var(--sombra); }
+        .portafolios-item:hover { transform: translateY(-5px); border-color: var(--naranja); }
+        .portafolios-img-container { width: 100%; height: 250px; overflow: hidden; background: #eee; }
+        .img-dynamic { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; cursor: pointer; }
+        .portafolios-info { padding: 20px; }
+        .portafolios-info h4 { color: var(--naranja); margin-bottom: 8px; text-transform: uppercase; }
+       
 
         /* Botones */
         .btn {
@@ -238,6 +256,7 @@
             <a href="#inicio">Inicio</a>
             <a href="#precios">Precios</a>
             <a href="#productos">Tienda</a>
+            <a href="#portafolios">Portafolios</a>
             <a href="#contacto">Contacto</a>
         </div>
     </nav>
@@ -255,6 +274,7 @@
                 <h3><i class="fas fa-desktop"></i> Instalación de Sistemas Operativos</h3>
                 <div class="price-item"><span>Windows / Linux</span> <span class="val">$20.00</span></div>
                 <div class="price-item"><span>MacOS</span> <span class="val">$40.00</span></div>
+                <div class="note-domicilio">Recargo por servicio a domicilio.</div>
                 <div class="note"><strong>Opcional:</strong> Respaldar información por solo $5.00 adicionales.</div>
                 <a href="https://wa.me/593960344187?text=Cotizar+Sistemas" class="btn btn-ws"><i class="fab fa-whatsapp"></i> Escribanos</a>
             </div>
@@ -264,6 +284,7 @@
                 <div class="price-item"><span>Limpieza Laptop (Hardware)</span> <span class="val">$15.00</span></div>
                 <div class="price-item"><span>Limpieza CPU (Escritorio)</span> <span class="val">$10.00</span></div>
                 <div class="price-item"><span>Cambio de Pasta Térmica Alta Calidad</span> <span class="val">Incluido</span></div>
+                <div class="note-domicilio">Recargo por servicio a domicilio.</div>
                 <div class="note">Ideal para equipos que se calientan o se apagan de repente.</div>
                 <a href="https://wa.me/593960344187?text=Cotizar+Limpieza" class="btn btn-ws"><i class="fab fa-whatsapp"></i> Escribanos</a>
             </div>
@@ -271,10 +292,10 @@
             <div class="price-card">
                 <h3><i class="fas fa-rocket"></i> Optimización y Programas</h3>
                 <div class="price-item"><span>Eliminar Virus</span> <span class="val">$15.00</span></div>
-                <div class="price-item"><span>Optimización del Sistema Operativo</span> <span class="val">$10.00</span></div>
-                <div class="price-item"><span>Instalación de Office y Activación</span> <span class="val">$10.00</span></div>
-                <div class="price-item"><span>Instalación de Programas Básicos</span> <span class="val">$10.00</span></div>
-                
+                <div class="price-item"><span>Optimizar Sistema Operativo</span> <span class="val">$10.00</span></div>
+                <div class="price-item"><span>Instalar Win + Office (Activación)</span> <span class="val">$10.00</span></div>
+                <div class="price-item"><span>Instalar Programas Básicos</span> <span class="val">$10.00</span></div>
+                <div class="note-domicilio">Recargo por servicio a domicilio.</div>
                 <div class="note">Mejoramos el rendimiento de computadoras lentas al instante.</div>
                 <a href="https://wa.me/593960344187?text=Cotizar+Optimizacion" class="btn btn-ws"><i class="fab fa-whatsapp"></i> Escribanos</a>
             </div>
@@ -320,8 +341,39 @@
                 <i class="fas fa-fan fa-3x"></i>
                 <h4>Cooler / Pasta Térmica</h4>
                 <div class="overlay">
+
                     <p>Enfriamiento profesional para tu equipo.</p>
-                    <a href="#" class="btn" style="background:white; color:var(--naranja); font-size:0.8rem;">COTIZAR</a>
+                    <a href="pasta_t.html" class="btn" style="background:white; color:var(--naranja); font-size:0.8rem;">COTIZAR</a>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    </section>
+
+    <section class="container" id="portafolios">
+        <h2>Trabajos Realizados</h2>
+        <div class="portafolios-grid">
+            <div class="portafolios-item">
+                <div class="portafolios-img-container">
+                    <img src="img/placa.jpeg" class="img-dynamic" 
+                        onmouseover="this.src='img/suciedad.jpeg'" 
+                        onmouseout="this.src='img/placa.jpeg'"> 
+                   </div> 
+                <div class="portafolios-info">
+                    <h4>Mantenimiento Generales</h4>
+                    <p>Limpieza profunda de todo los componentes y Cambios de pasta térmica de alto rendimiento.</p>
+                </div>
+            </div>
+            <div class="portafolios-item">
+                <div class="portafolios-img-container">
+                    <img src="img/cpu.jpeg" class="img-dynamic" 
+                        onmouseover="this.src='img/cpul.jpeg'" 
+                        onmouseout="this.src='img/cpu.jpeg'">
+                </div>
+                <div class="portafolios-info">
+                    <h4>Repotenciación Laptop y PCs</h4>
+                    <p>Instalación de SSD, Memorias RAM y mejora de rendimiento en sistema Windows, Linux y MacOS.</p>
                 </div>
             </div>
         </div>
@@ -366,5 +418,10 @@
    target="_blank">
     <i class="fab fa-whatsapp my-float"></i>
 </a>
+<script>
+    function cambiarImagen(idVisor, rutaImagen) {
+        document.getElementById(idVisor).src = rutaImagen;
+    }
+</script>
 </body>
 </html>
