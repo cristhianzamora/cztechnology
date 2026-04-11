@@ -163,6 +163,27 @@
             .catalog-container { grid-template-columns: 1fr; }
             .filter-section { margin: 15px 5%; }
         }
+        /* Etiqueta de Sin Stock */
+.badge-no-stock {
+    display: inline-block;
+    background-color: #ffebee; /* Rojo muy claro (Soft Red) */
+    color: #c62828;            /* Rojo oscuro para el texto */
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    border: 1px solid #ffcdd2; /* Borde sutil para dar definición */
+}
+
+/* Opcional: Estilo para el botón cuando no hay stock */
+.btn-ws-card.disabled {
+    background-color: #ccc;
+    pointer-events: none; /* Desactiva el clic si prefieres */
+    filter: grayscale(1);
+    opacity: 0.7;
+}
     </style>
 </head>
 <body>
@@ -180,7 +201,7 @@
             <select id="f-marca">
                 <option value="todos">Todas</option>
                 <option value="kingston">Kingston</option>
-                <option value="crucial">Adata</option>
+                <option value="crucial">Crucial</option>
                 <option value="wd">Western Digital</option>
             </select>
         </div>
@@ -199,25 +220,28 @@
         
         <div class="product-card" data-marca="kingston" data-capacidad="480gb">
             <div class="icon-circle"><i class="fas fa-hdd"></i></div>
-            <h3>SSD Kingston 4880GB A400</h3>
+            <h3>SSD Kingston A400</h3>
             <p>SATA III - 480GB</p>
-            <span class="price">$100.00</span>
+            <span class="price">$35.00</span>
+            <span class="badge-no-stock">Sin Stock</span>
             <a href="https://wa.me/593960344187?text=Hola Zamora Tech quiero Cotizar+Kingston+480GB" class="btn-ws-card" target="_blank">Pedir por WhatsApp</a>
         </div>
 
         <div class="product-card" data-marca="crucial" data-capacidad="1tb">
             <div class="icon-circle"><i class="fas fa-bolt"></i></div>
-            <h3>M.2 NVMe Adata 1TB</h3>
+            <h3>M.2 NVMe Crucial P3</h3>
             <p>High Speed - 1TB</p>
-            <span class="price">$200.00</span>
+            <span class="price">$75.00</span>
+            <span class="badge-no-stock">Sin Stock</span>
             <a href="https://wa.me/593960344187?text=Hola Zamora Tech quiero Cotizar+Crucial+1TB" class="btn-ws-card" target="_blank">Pedir por WhatsApp</a>
         </div>
 
         <div class="product-card" data-marca="kingston" data-capacidad="240gb">
             <div class="icon-circle"><i class="fas fa-hdd"></i></div>
-            <h3>SSD Kingston 240GB A400</h3>
+            <h3>SSD Kingston A400</h3>
             <p>SATA III - 240GB</p>
-            <span class="price">$50.00</span>
+            <span class="price">$25.00</span>
+            <span class="badge-no-stock">Sin Stock</span>
             <a href="https://wa.me/593960344187?text=Hola Zamora Tech quiero Cotizar+Kingston+240GB" class="btn-ws-card" target="_blank">Pedir por WhatsApp</a>
         </div>
 
