@@ -181,6 +181,8 @@
         .product-card i { color: #ddd; margin-bottom: 15px; }
         .product-card h4 { font-size: 1rem; margin-bottom: 10px; }
 
+
+       
         .overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -205,6 +207,7 @@
             border-right: 4px solid var(--naranja)
         }
         .product-card:hover .overlay { opacity: 1; }
+
         /* SECCIÓN PORTAFOLIOS */
         .portafolios-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
         .portafolios-item { background: white; border-radius: 15px; overflow: hidden; border: 1px solid #eee; transition: 0.3s; box-shadow: var(--sombra); }
@@ -246,6 +249,10 @@
         .footer-grid h4 { color: var(--naranja); margin-bottom: 20px; }
         .social a { color: white; font-size: 1.5rem; margin-right: 15px; }
         .social a:hover { color: var(--naranja); }
+
+    
+
+
     </style>
 </head>
 <body>
@@ -274,7 +281,7 @@
                 <h3><i class="fas fa-desktop"></i> Instalación de Sistemas Operativos</h3>
                 <div class="price-item"><span>Windows / Linux</span> <span class="val">$20.00</span></div>
                 <div class="price-item"><span>MacOS</span> <span class="val">$40.00</span></div>
-                <div class="note-domicilio">Recargo por servicio a domicilio.</div>
+                <div class="note-domicilio"><strong>Recargo:</strong> por servicio a domicilio.</div>
                 <div class="note"><strong>Opcional:</strong> Respaldar información por solo $5.00 adicionales.</div>
                 <a href="https://wa.me/593960344187?text=Cotizar+Sistemas" class="btn btn-ws"><i class="fab fa-whatsapp"></i> Escribanos</a>
             </div>
@@ -284,18 +291,25 @@
                 <div class="price-item"><span>Limpieza Laptop (Hardware)</span> <span class="val">$15.00</span></div>
                 <div class="price-item"><span>Limpieza CPU (Escritorio)</span> <span class="val">$10.00</span></div>
                 <div class="price-item"><span>Cambio de Pasta Térmica Alta Calidad</span> <span class="val">Incluido</span></div>
-                <div class="note-domicilio">Recargo por servicio a domicilio.</div>
+                <div class="note-domicilio"><strong>Recargo:</strong> por servicio a domicilio.</div>
                 <div class="note">Ideal para equipos que se calientan o se apagan de repente.</div>
                 <a href="https://wa.me/593960344187?text=Cotizar+Limpieza" class="btn btn-ws"><i class="fab fa-whatsapp"></i> Escribanos</a>
             </div>
-
             <div class="price-card">
-                <h3><i class="fas fa-rocket"></i> Optimización y Programas</h3>
+                <h3><i class="fas fa-laptop-house"></i> Soporte Remoto</h3>
+                <div class="price-item"><span>Activación de paquete de office. </span> <span class="val">$10.00</span></div>
+                <div class="price-item"><span>Activación de Windows 10, 11. </span> <span class="val">$10.00</span></div>
+                <div class="price-item"><span>Activación de Programas de Ingeniería, Diseño, Editores de Video</span> <span class="val">$10.00</span></div>
+                <div class="note">Ideal para no salir de casa.</div>
+                <a href="https://wa.me/593960344187?text=Cotizar+Activaciones" class="btn btn-ws"><i class="fab fa-whatsapp"></i> Escribanos</a>
+            </div>
+            <div class="price-card">
+                <h3><i class="fas fa-rocket"></i> Optimización del S.O y Programas</h3>
                 <div class="price-item"><span>Eliminar Virus</span> <span class="val">$15.00</span></div>
                 <div class="price-item"><span>Optimizar Sistema Operativo</span> <span class="val">$10.00</span></div>
                 <div class="price-item"><span>Instalar Win + Office (Activación)</span> <span class="val">$10.00</span></div>
                 <div class="price-item"><span>Instalar Programas Básicos</span> <span class="val">$10.00</span></div>
-                <div class="note-domicilio">Recargo por servicio a domicilio.</div>
+                <div class="note-domicilio"><strong>Recargo:</strong> por servicio a domicilio.</div>
                 <div class="note">Mejoramos el rendimiento de computadoras lentas al instante.</div>
                 <a href="https://wa.me/593960344187?text=Cotizar+Optimizacion" class="btn btn-ws"><i class="fab fa-whatsapp"></i> Escribanos</a>
             </div>
@@ -314,11 +328,11 @@
                 </div>
             </div>
             <div class="product-card">
-                <i class="fas fa-memory fa-3x"></i>
+                <i class="fas fa-memory fa-3x" ></i>
                 <h4>Memorias RAM</h4>
                 <div class="overlay">
                     <p>DDR3, DDR4, DDR5 para Laptop y PC.</p>
-                    <a href="#" class="btn" style="background:white; color:var(--naranja); font-size:0.8rem;">COTIZAR</a>
+                    <a href="memorias_ram.html" class="btn" style="background:white; color:var(--naranja); font-size:0.8rem;">COTIZAR</a>
                 </div>
             </div>
             <div class="product-card">
@@ -334,7 +348,7 @@
                 <h4>Teclados y Mouse</h4>
                 <div class="overlay">
                     <p>Equipos ergonómicos y Gamer.</p>
-                    <a href="#" class="btn" style="background:white; color:var(--naranja); font-size:0.8rem;">COTIZAR</a>
+                    <a href="perifericos.html" class="btn" style="background:white; color:var(--naranja); font-size:0.8rem;">COTIZAR</a>
                 </div>
             </div>
             <div class="product-card">
@@ -345,7 +359,17 @@
                     <p>Enfriamiento profesional para tu equipo.</p>
                     <a href="pasta_t.html" class="btn" style="background:white; color:var(--naranja); font-size:0.8rem;">COTIZAR</a>
                 </div>
+
             </div>
+            <div class="product-card">
+                <i class="fas fa-headphones fa-3x" ></i>
+                  
+                <h4>Audios / Parlantes</h4>
+                <div class="overlay">
+
+                    <p>Parlantes, audios, microfonos.</p>
+                    <a href="audios.html" class="btn" style="background:white; color:var(--naranja); font-size:0.8rem;">COTIZAR</a>
+                </div>
         </div>
     
     </div>
