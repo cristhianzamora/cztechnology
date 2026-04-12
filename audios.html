@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Audios | Zamora Tech</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --naranja: #FF6600;
+            --naranja-dark: #e65c00;
+            --oscuro: #1a1a1a;
+            --blanco: #ffffff;
+            --gris-fondo: #f8f9fa;
+            --sombra: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--gris-fondo); color: var(--oscuro); padding-bottom: 80px; }
+
+        header {
+            background: var(--blanco);
+            padding: 15px 5%;
+            box-shadow: var(--sombra);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .btn-volver {
+            text-decoration: none;
+            color: var(--oscuro);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .logo-text { font-weight: 800; color: var(--naranja); font-size: 1.2rem; }
+
+        .filter-section {
+            background: var(--blanco);
+            margin: 20px auto;
+            width: fit-content;
+            padding: 15px 30px;
+            border-radius: 12px;
+            box-shadow: var(--sombra);
+            display: flex;
+            flex-direction: row;
+            align-items: flex-end;
+            gap: 20px;
+        }
+
+        .filter-group { display: flex; flex-direction: column; gap: 5px; width: 160px; }
+        .filter-group label { font-size: 0.8rem; font-weight: 700; color: #555; text-transform: uppercase; }
+        .filter-group select { padding: 10px; border-radius: 8px; border: 2px solid #eee; outline: none; background: #fff; font-weight: 500; cursor: pointer; width: 100%; }
+        .filter-group select:focus { border-color: var(--naranja); }
+
+        .catalog-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+            padding: 0 5%;
+        }
+
+        .product-card {
+            background: var(--blanco);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: 0.3s ease;
+            border: 1px solid #efefef;
+        }
+
+        .product-card:hover { transform: translateY(-8px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+
+        /* --- CORRECCIÓN DE ICONOS E IMÁGENES --- */
+        .icon-circle {
+            background: #fff5ed;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            color: var(--naranja);
+            font-size: 2rem;
+            overflow: hidden; /* CORTA lo que se salga */
+            position: relative;
+        }
+
+        .icon-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Ajuste perfecto sin deformar */
+            padding: 20px; /* Espacio para que respire la imagen */
+            display: block;
+        }
+
+        .product-card h3 { font-size: 1rem; margin-bottom: 10px; font-weight: 700; }
+        .product-card p { font-size: 0.8rem; color: #888; margin-bottom: 15px; }
+        .price { font-size: 1.4rem; font-weight: 700; color: var(--oscuro); display: block; margin-bottom: 25px; }
+
+        .btn-ws-card {
+            background: #25d366;
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 8px;
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .btn-ws-card:hover { background: #128c7e; }
+
+        .badge-no-stock {
+            display: inline-block;
+            background-color: #ffebee; 
+            color: #c62828;            
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            border: 1px solid #ffcdd2; 
+        }
+
+        .ws-float {
+            position: fixed; width: 60px; height: 60px; bottom: 25px; right: 25px;
+            background: #25d366; color: #fff; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 30px; box-shadow: 2px 4px 10px rgba(0,0,0,0.3);
+            z-index: 2000; text-decoration: none; animation: pulse-ws 2s infinite;
+        }
+
+        @keyframes pulse-ws {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        @media (max-width: 480px) {
+            .catalog-container { grid-template-columns: 1fr; }
+            .filter-section { width: 90%; flex-direction: column; align-items: center; }
+            .filter-group { width: 100%; max-width: 250px; }
+        }
+
+        /* Quita el subrayado y mantiene el color original del logo */
+        .logo-link {
+        text-decoration: none;
+        transition: 0.3s;
+        }
+
+        /* Efecto opcional: que brille un poco al pasar el mouse */
+        .logo-link:hover {
+         opacity: 0.8;
+        transform: scale(1.05); /* Un pequeño aumento de tamaño al tocarlo */
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="btn-volver">
+            <i class="fas fa-chevron-left"></i> VOLVER
+
+        </a>
+        <a href="index.html" class="logo-link">
+        <div class="logo-text">ZAMORA TECH</div>
+        </a>
+    </header>
+
+    <section class="filter-section">
+        <div class="filter-group">
+            <label>Marca</label>
+            <select id="f-marca">
+                <option value="todos">Todas</option>
+                <option value="genius">Genius</option>
+                <option value="logitec">Logitec</option>
+                <option value="a1">A1</option>
+                <option value="argon">Argon</option>
+            </select>
+        </div>
+    </section>
+
+    <main class="catalog-container">
+        <div class="product-card" data-marca="genius">
+            <div class="icon-circle">
+                <img src="img/parlantes_g.jpeg" alt="Parlante Genius" class="img-producto">
+            </div>
+            <h3>Genius</h3>
+            <p>SP-Q160</p>
+            <span class="price">$12.00</span>
+            <span class="badge-no-stock">Sin Stock</span>
+            <a href="https://wa.me/593960344187?text=Cotizar+Genius" class="btn-ws-card">Pedir por WhatsApp</a>
+        </div>
+
+        <div class="product-card" data-marca="logitec">
+            <div class="icon-circle">
+                <img src="img/parlantes_log.jpeg" alt="Parlante Genius" class="img-producto">
+            </div>
+            <h3>Logitec</h3>
+            <p>S120 Stereo Speakers</p>
+            <span class="price">$25.00</span>
+            <span class="badge-no-stock">Sin Stock</span>
+            <a href="https://wa.me/593960344187?text=Cotizar+Genius" class="btn-ws-card">Pedir por WhatsApp</a>
+        </div>
+
+        <div class="product-card" data-marca="a1">
+            <div class="icon-circle">
+                <img src="img/audifonos_d.jpeg" alt="Parlante Genius" class="img-producto">
+            </div>
+            <h3>A1</h3>
+            <p>The Engineer</p>
+            <span class="price">$25.00</span>
+            <span class="badge-no-stock">Sin Stock</span>
+            <a href="https://wa.me/593960344187?text=Cotizar+Genius" class="btn-ws-card">Pedir por WhatsApp</a>
+        </div>
+
+        <div class="product-card" data-marca="argon">
+            <div class="icon-circle">
+                <img src="img/parlante_argon.jpeg" alt="Parlante Genius" class="img-producto">
+            </div>
+            <h3>Argon</h3>
+            <p>Volcano Stereo</p>
+            <span class="price">$25.00</span>
+            <span class="badge-no-stock">Sin Stock</span>
+            <a href="https://wa.me/593960344187?text=Cotizar+Genius" class="btn-ws-card">Pedir por WhatsApp</a>
+        </div>
+    </main>
+
+    <a href="https://wa.me/593960344187" class="ws-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const selectMarca = document.getElementById('f-marca');
+            const productos = document.querySelectorAll('.product-card');
+
+            function ejecutarFiltro() {
+                const marcaSeleccionada = selectMarca.value;
+
+                productos.forEach(card => {
+                    const cardMarca = card.getAttribute('data-marca');
+                    const matchMarca = (marcaSeleccionada === 'todos' || marcaSeleccionada === cardMarca);
+
+                    if (matchMarca) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            selectMarca.addEventListener('change', ejecutarFiltro);
+        });
+    </script>
+</body>
+</html>
