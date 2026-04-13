@@ -221,6 +221,34 @@
     margin: 5px auto 0;
     border-radius: 2px;
 }
+/* --- ESTILO DEL PIE DE PÁGINA (FOOTER) --- */
+footer {
+    background: var(--blanco);
+    padding: 30px 0;
+    text-align: center;
+    border-top: 1px solid #eee;
+    margin-top: 50px;
+    width: 100%;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.footer-logo {
+    font-weight: 800;
+    color: var(--naranja);
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+.footer-rights {
+    font-size: 0.8rem;
+    color: #888;
+}
 
     </style>
 </head>
@@ -359,6 +387,11 @@
             selectCapa.addEventListener('change', ejecutarFiltro);
         });
     </script>
-
+<footer>
+    <div class="footer-content">
+        <div class="footer-logo">ZAMORA TECH</div>
+        <p class="footer-rights">© 2026 Todos los derechos reservados.</p>
+    </div>
+</footer>
 </body>
 </html>
