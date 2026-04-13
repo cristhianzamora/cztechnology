@@ -166,6 +166,33 @@
         transform: scale(1.05); /* Un pequeño aumento de tamaño al tocarlo */
         }
 
+        /* --- NUEVO ESTILO PARA EL TÍTULO --- */
+.section-title {
+    text-align: center;
+    margin-top: 30px; /* Espacio después del header */
+    margin-bottom: -10px; /* Acercalo un poco a los filtros */
+}
+
+.section-title h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--oscuro);
+    position: relative;
+    display: inline-block;
+}
+
+/* Opcional: una pequeña línea naranja debajo del título para estilo */
+.section-title h2::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 4px;
+    background: var(--naranja);
+    margin: 5px auto 0;
+    border-radius: 2px;
+}
+
+
     </style>
 </head>
 <body>
@@ -179,9 +206,12 @@
         <div class="logo-text">ZAMORA TECH</div>
         </a>
     </header>
+    <div class="section-title">
+    <h2>Audios</h2>
+</div>
 
     <section class="filter-section">
-        <div class="filter-group">
+            <div class="filter-group">
             <label>Marca</label>
             <select id="f-marca">
                 <option value="todos">Todas</option>
