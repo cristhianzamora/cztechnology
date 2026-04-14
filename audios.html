@@ -5,25 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo de Audios | Zamora Tech</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --naranja: #FF6600;
-            --naranja-dark: #e65c00;
+            --naranja-hover: #e65c00;
             --oscuro: #1a1a1a;
             --blanco: #ffffff;
             --gris-fondo: #f8f9fa;
-            --sombra: 0 4px 15px rgba(0,0,0,0.1);
+            --gris-suave: #eeeeee;
+            --sombra-suave: 0 4px 12px rgba(0,0,0,0.08);
+            --sombra-fuerte: 0 12px 24px rgba(0,0,0,0.15);
         }
 
+        /* 1. Reset y Estilos Generales */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background-color: var(--gris-fondo); color: var(--oscuro); padding-bottom: 80px; }
 
+        /* 2. Header y Logo Link */
         header {
             background: var(--blanco);
             padding: 15px 5%;
-            box-shadow: var(--sombra);
+            box-shadow: var(--sombra-suave);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -42,85 +46,99 @@
             font-size: 0.9rem;
         }
 
+        .logo-link { text-decoration: none; transition: transform 0.3s ease; }
+        .logo-link:hover { transform: scale(1.05); }
         .logo-text { font-weight: 800; color: var(--naranja); font-size: 1.2rem; }
 
+        /* 3. Barra de Filtros */
         .filter-section {
             background: var(--blanco);
             margin: 20px auto;
             width: fit-content;
             padding: 15px 30px;
             border-radius: 12px;
-            box-shadow: var(--sombra);
+            box-shadow: var(--sombra-suave);
             display: flex;
-            flex-direction: row;
-            align-items: flex-end;
             gap: 20px;
         }
 
         .filter-group { display: flex; flex-direction: column; gap: 5px; width: 160px; }
-        .filter-group label { font-size: 0.8rem; font-weight: 700; color: #555; text-transform: uppercase; }
-        .filter-group select { padding: 10px; border-radius: 8px; border: 2px solid #eee; outline: none; background: #fff; font-weight: 500; cursor: pointer; width: 100%; }
-        .filter-group select:focus { border-color: var(--naranja); }
+        .filter-group label { font-size: 0.75rem; font-weight: 700; color: #555; text-transform: uppercase; }
+        .filter-group select { 
+            padding: 10px; border-radius: 8px; border: 2px solid #eee; 
+            outline: none; background: #fff; font-weight: 500; cursor: pointer; 
+        }
 
+        /* 4. Grid de Productos */
         .catalog-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 20px;
-            padding: 0 5%;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 20px 5%;
         }
 
+        /* 5. Tarjeta de Producto Premium */
         .product-card {
             background: var(--blanco);
-            border-radius: 15px;
+            border-radius: 18px;
             padding: 20px;
             text-align: center;
-            transition: 0.3s ease;
-            border: 1px solid #efefef;
+            border: 1px solid var(--gris-suave);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .product-card:hover { transform: translateY(-8px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--sombra-fuerte);
+            border-color: var(--naranja);
+        }
 
-        /* --- CORRECCIÓN DE ICONOS E IMÁGENES --- */
+        /* 6. La Vitrina de Imagen Mejorada */
         .icon-circle {
-            background: #fff5ed;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
+            background: #fdfdfd; 
+            width: 100%;
+            height: 180px; 
+            border-radius: 12px;
             display: flex !important;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 15px;
-            color: var(--naranja);
-            font-size: 2rem;
-            overflow: hidden; /* CORTA lo que se salga */
-            position: relative;
+            margin-bottom: 15px;
+            overflow: hidden;
+            border: 1px solid #f5f5f5;
         }
 
-        .icon-circle img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* Ajuste perfecto sin deformar */
-            padding: 20px; /* Espacio para que respire la imagen */
-            display: block;
+        .img-producto {
+            max-width: 85% !important;
+            max-height: 85% !important;
+            object-fit: contain !important;
+            transition: transform 0.4s ease;
         }
 
-        .product-card h3 { font-size: 1rem; margin-bottom: 10px; font-weight: 700; }
-        .product-card p { font-size: 0.8rem; color: #888; margin-bottom: 15px; }
-        .price { font-size: 1.4rem; font-weight: 700; color: var(--oscuro); display: block; margin-bottom: 25px; }
+        .product-card:hover .img-producto { transform: scale(1.1); }
 
-        .btn-ws-card {
-            background: #25d366;
-            color: white;
-            text-decoration: none;
-            padding: 10px;
-            border-radius: 8px;
-            display: block;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: 0.3s;
+        /* 7. Textos y Precios */
+        .product-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--oscuro); margin-bottom: 4px; }
+        .product-card p { font-size: 0.85rem; color: #777; margin-bottom: 12px; min-height: 40px; }
+        .price { font-size: 1.6rem; font-weight: 800; color: var(--naranja); margin-bottom: 15px; display: block; }
+
+        /* Etiqueta de con Stock */
+        .badge-stock {
+            display: inline-block;
+            background-color: #B0F7B8; 
+            color: #0F401E;            
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            border: 1px solid #054D1D; 
         }
-        .btn-ws-card:hover { background: #128c7e; }
 
+        /* Etiqueta de Sin Stock */
         .badge-no-stock {
             display: inline-block;
             background-color: #ffebee; 
@@ -134,6 +152,15 @@
             border: 1px solid #ffcdd2; 
         }
 
+
+        .btn-ws-card {
+            background: #25d366; color: var(--blanco); text-decoration: none;
+            padding: 12px; border-radius: 10px; font-weight: 700; font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+        .btn-ws-card:hover { background: #128c7e; }
+
+        /* 9. Botón WhatsApp Flotante */
         .ws-float {
             position: fixed; width: 60px; height: 60px; bottom: 25px; right: 25px;
             background: #25d366; color: #fff; border-radius: 50%;
@@ -148,49 +175,39 @@
             100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
+        /* 10. Responsive */
         @media (max-width: 480px) {
-            .catalog-container { grid-template-columns: 1fr; }
             .filter-section { width: 90%; flex-direction: column; align-items: center; }
             .filter-group { width: 100%; max-width: 250px; }
+            .icon-circle { height: 150px; }
         }
 
-        /* Quita el subrayado y mantiene el color original del logo */
-        .logo-link {
-        text-decoration: none;
-        transition: 0.3s;
-        }
 
-        /* Efecto opcional: que brille un poco al pasar el mouse */
-        .logo-link:hover {
-         opacity: 0.8;
-        transform: scale(1.05); /* Un pequeño aumento de tamaño al tocarlo */
-        }
+        /* Este es el contenedor que soluciona el problema */
+.product-footer {
+    display: flex;
+    flex-direction: column; /* Fuerza a que el botón se ubique DEBAJO del texto */
+    align-items: center;    /* Centra ambos elementos horizontalmente */
+    gap: 12px;              /* Espacio exacto entre "Sin Stock" y el botón */
+    margin-top: auto;       /* Empuja todo el bloque al fondo de la tarjeta */
+    width: 100%;
+}
 
-        /* --- NUEVO ESTILO PARA EL TÍTULO --- */
-.section-title {
+/* Estilo del botón para que no se vea pegado */
+.btn-ws-card {
+    width: 100%;            /* Ocupa todo el ancho disponible */
     text-align: center;
-    margin-top: 30px; /* Espacio después del header */
-    margin-bottom: -10px; /* Acercalo un poco a los filtros */
+    padding: 12px;
+    border-radius: 10px;
+    display: block;         /* Asegura que se comporte como un bloque */
 }
 
-.section-title h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--oscuro);
-    position: relative;
+/* Estilo de la etiqueta para que resalte debajo del precio */
+.badge-no-stock {
     display: inline-block;
+    margin-bottom: 0;       /* Quitamos márgenes antiguos */
 }
 
-/* Opcional: una pequeña línea naranja debajo del título para estilo */
-.section-title h2::after {
-    content: '';
-    display: block;
-    width: 50px;
-    height: 4px;
-    background: var(--naranja);
-    margin: 5px auto 0;
-    border-radius: 2px;
-}
 /* --- ESTILO DEL PIE DE PÁGINA (FOOTER) --- */
 footer {
     background: var(--blanco);
@@ -220,80 +237,145 @@ footer {
     color: #888;
 }
 
+/* --- NUEVO ESTILO PARA EL TÍTULO --- */
+.section-title {
+    text-align: center;
+    margin-top: 30px; /* Espacio después del header */
+    margin-bottom: -10px; /* Acercalo un poco a los filtros */
+}
+
+.section-title h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--oscuro);
+    position: relative;
+    display: inline-block;
+}
+
+/* Opcional: una pequeña línea naranja debajo del título para estilo */
+.section-title h2::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 4px;
+    background: var(--naranja);
+    margin: 5px auto 0;
+    border-radius: 2px;
+}
+
     </style>
 </head>
 <body>
 
     <header>
-        <a href="index.html" class="btn-volver">
+        <a href="index.html#productos" class="btn-volver">
             <i class="fas fa-chevron-left"></i> VOLVER
-
         </a>
         <a href="index.html" class="logo-link">
-        <div class="logo-text">ZAMORA TECH</div>
+            <div class="logo-text">ZAMORA TECH</div>
         </a>
     </header>
     <div class="section-title">
     <h2>Audios</h2>
-</div>
-
+    </div>
     <section class="filter-section">
-            <div class="filter-group">
-            <label>Marca</label>
+        <div class="filter-group">
+            <label>Tipo</label>
             <select id="f-marca">
                 <option value="todos">Todas</option>
                 <option value="genius">Genius</option>
                 <option value="logitec">Logitec</option>
-                <option value="a1">A1</option>
                 <option value="argon">Argon</option>
+                <option value="komc">Komc</option>
+                <option value="a1">A1</option>
+
             </select>
         </div>
+
+        <div class="filter-group">
+            <label>Marcas</label>
+            <select id="f-capacidad">
+                <option value="audifonos">Audifonos</option>
+                <option value="parlantes">Parlantes</option>
+
+            </select>
+        </div>
+        
     </section>
 
     <main class="catalog-container">
-        <div class="product-card" data-marca="genius">
+        <div class="product-card" data-marca="genius" data-capacidad="parlantes">
             <div class="icon-circle">
-                <img src="img/parlantes_g.jpeg" alt="Parlante Genius" class="img-producto">
+                <img src="https://http2.mlstatic.com/D_NQ_NP_669855-MEC89076534202_082025-O.webp" alt="Genius" class="img-producto">
             </div>
-            <h3>Genius</h3>
-            <p>SP-Q160</p>
-            <span class="price">$12.00</span>
-            <span class="badge-no-stock">Sin Stock</span>
-            <a href="https://wa.me/593960344187?text=Cotizar+Genius" class="btn-ws-card">Pedir por WhatsApp</a>
+            <div>
+                <h3>Parlantes Genius</h3>
+                <p>SP-Q160 Negro/Naranja</p>
+                <span class="price">$15.00</span>
+                <span class="badge-stock">En Stock</span>
+            </div>
+            <div class="product-footer">
+                
+                <a href="https://wa.me/593960344187?text=Cotizar+Genius+parlantes" class="btn-ws-card" target="_blank">
+                    Pedir por WhatsApp
+                </a>
+            </div>
         </div>
 
-        <div class="product-card" data-marca="logitec">
+        <div class="product-card" data-marca="logitec" data-capacidad="parlantes">
             <div class="icon-circle">
-                <img src="img/parlantes_log.jpeg" alt="Parlante Genius" class="img-producto">
+                <img src="https://http2.mlstatic.com/D_NQ_NP_803194-MLA80816047639_112024-O.webp" alt="Logitec" class="img-producto">
             </div>
-            <h3>Logitec</h3>
-            <p>S120 Stereo Speakers</p>
-            <span class="price">$25.00</span>
-            <span class="badge-no-stock">Sin Stock</span>
-            <a href="https://wa.me/593960344187?text=Cotizar+Genius" class="btn-ws-card">Pedir por WhatsApp</a>
+            <div>
+                <h3>Parlantes Logitech</h3>
+                <p>S120 Stereo Speakers</p>
+                <span class="price">$25.00</span>
+                <span class="badge-stock">En Stock</span>
+            </div>
+            <div class="product-footer">
+                
+                <a href="https://wa.me/593960344187?text=Hola Zamora Tech quiero comprar+Parlantes Logitec S120" class="btn-ws-card" target="_blank">
+                    Pedir por WhatsApp
+                </a>
+            </div>
         </div>
 
-        <div class="product-card" data-marca="a1">
+        <div class="product-card" data-marca="komc" data-capacidad="audifonos">
             <div class="icon-circle">
-                <img src="img/audifonos_d.jpeg" alt="Parlante Genius" class="img-producto">
+                <img src="https://fernapetcl.vteximg.com.br/arquivos/ids/166188/30111-1.jpg?v=637673952472430000" alt="Komc" class="img-producto">
             </div>
-            <h3>A1</h3>
-            <p>The Engineer</p>
-            <span class="price">$25.00</span>
-            <span class="badge-no-stock">Sin Stock</span>
-            <a href="https://wa.me/593960344187?text=Cotizar+Genius" class="btn-ws-card">Pedir por WhatsApp</a>
+            <div>
+                <h3>Audifonos A7 tipo diadema</h3>
+                <p>Excelente calidad</p>
+                <span class="price">$25.00</span>
+                <span class="badge-stock">En Stock</span>
+            </div>
+            <div class="product-footer">
+                
+                <a href="https://wa.me/593960344187?text=Hola Zamora Tech quiero comprar+Mouse Quasad Inalambrico+QM-880 PLUS+" class="btn-ws-card" target="_blank">
+                    Pedir por WhatsApp
+                </a>
+            </div>
         </div>
 
-        <div class="product-card" data-marca="argon">
+        <div class="product-card" data-marca="a1" data-capacidad="audifonos">
             <div class="icon-circle">
-                <img src="img/parlante_argon.jpeg" alt="Parlante Genius" class="img-producto">
+                <img src="https://jvimportaciones.com/wp-content/uploads/2021/04/AUDIFONO-GAMER-A1.jpg" alt="A1" class="img-producto">
             </div>
-            <h3>Argon</h3>
-            <p>Volcano Stereo</p>
-            <span class="price">$25.00</span>
-            <span class="badge-no-stock">Sin Stock</span>
-            <a href="https://wa.me/593960344187?text=Cotizar+Genius" class="btn-ws-card">Pedir por WhatsApp</a>
+            <div>
+                <h3>Audifonos A1 tipo diadema</h3>
+                <p>Excelente calidad</p>
+                <span class="price">$25.00</span>
+                <span class="badge-stock">En Stock</span>
+            </div>
+            <div class="product-footer">
+                
+                <a href="https://wa.me/593960344187?text=Hola Zamora Tech quiero comprar+audifonos A1" class="btn-ws-card" target="_blank">
+                    Pedir por WhatsApp
+                </a>
+            </div>
         </div>
+
     </main>
 
     <a href="https://wa.me/593960344187" class="ws-float" target="_blank">
@@ -303,16 +385,21 @@ footer {
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const selectMarca = document.getElementById('f-marca');
+            const selectCapa = document.getElementById('f-capacidad');
             const productos = document.querySelectorAll('.product-card');
 
             function ejecutarFiltro() {
-                const marcaSeleccionada = selectMarca.value;
+                const m = selectMarca.value;
+                const c = selectCapa.value;
 
                 productos.forEach(card => {
-                    const cardMarca = card.getAttribute('data-marca');
-                    const matchMarca = (marcaSeleccionada === 'todos' || marcaSeleccionada === cardMarca);
+                    const cMarca = card.getAttribute('data-marca');
+                    const cCapa = card.getAttribute('data-capacidad');
 
-                    if (matchMarca) {
+                    const matchMarca = (m === 'todos' || m === cMarca);
+                    const matchCapa = (c === 'todos' || c === cCapa);
+
+                    if (matchMarca && matchCapa) {
                         card.style.display = 'block';
                     } else {
                         card.style.display = 'none';
@@ -321,16 +408,14 @@ footer {
             }
 
             selectMarca.addEventListener('change', ejecutarFiltro);
+            selectCapa.addEventListener('change', ejecutarFiltro);
         });
-
-
     </script>
-    <footer>
+<footer>
     <div class="footer-content">
         <div class="footer-logo">ZAMORA TECH</div>
         <p class="footer-rights">© 2026 Todos los derechos reservados.</p>
     </div>
 </footer>
 </body>
-
 </html>
