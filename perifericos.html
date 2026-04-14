@@ -188,11 +188,24 @@
     border-radius: 10px;
     display: block;         /* Asegura que se comporte como un bloque */
 }
+/* Etiqueta de con Stock */
+        .badge-stock {
+            display: inline-block;
+            background-color: #B0F7B8; 
+            color: #0F401E;            
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            border: 1px solid #054D1D; 
+        }
 
 /* Estilo de la etiqueta para que resalte debajo del precio */
 .badge-no-stock {
     display: inline-block;
-    margin-bottom: 0;       /* Quitamos márgenes antiguos */
+    margin-bottom: 25;       /* Quitamos márgenes antiguos */
 }
 
 /* --- ESTILO DEL PIE DE PÁGINA (FOOTER) --- */
@@ -297,6 +310,7 @@ footer {
                 <h3>Teclado Alambrico Genius</h3>
                 <p>SlimStar</p>
                 <span class="price">$12.00</span>
+                <span class="badge-stock">En Stock</span>
             </div>
             <div class="product-footer">
                 
@@ -314,6 +328,7 @@ footer {
                 <h3>Mouse Quasad Inalambrico</h3>
                 <p>QM-880 PLUS+</p>
                 <span class="price">$18.00</span>
+                <span class="badge-stock">En Stock</span>
             </div>
             <div class="product-footer">
                 
@@ -331,6 +346,7 @@ footer {
                 <h3>Teclado Gaming Genius</h3>
                 <p>Scorpion K220</p>
                 <span class="price">$25.00</span>
+                <span class="badge-stock">En Stock</span>
             </div>
             <div class="product-footer">
                 
@@ -340,14 +356,15 @@ footer {
             </div>
         </div>
 
-        <div class="product-card" data-marca="Argon" data-capacidad="camara">
+        <div class="product-card" data-marca="argon" data-capacidad="camara">
             <div class="icon-circle">
-                <img src="https://assets.pcfactory.cl/public/foto/53580/google_1000.jpg" alt="Argon" class="img-producto">
+                <img src="img/cam_web.jpeg" alt="Argon" class="img-producto">
             </div>
             <div>
                 <h3>Camara Web Argon</h3>
                 <p>Calidad de 720p</p>
                 <span class="price">$18.00</span>
+                <span class="badge-stock">En Stock</span>
             </div>
             <div class="product-footer">
                 
