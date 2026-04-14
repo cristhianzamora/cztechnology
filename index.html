@@ -250,9 +250,27 @@
         .social a { color: white; font-size: 1.5rem; margin-right: 15px; }
         .social a:hover { color: var(--naranja); }
 
-    
+  /* icono de la impresora en el catalogo */  
+.icon-printer {
+    position: relative;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #eee;
+            overflow: hidden;
+}
 
-
+.icon-printer:hover {
+    position: relative;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #eee;
+            overflow: hidden;
+}
+ 
     </style>
 </head>
 <body>
@@ -365,6 +383,18 @@
                 </div>
 
             </div>
+
+         
+            <div class="product-card">
+                <i class="fas fa-print fa-3x"></i>
+                <h4>Impresoras</h4>
+                <div class="overlay">
+
+                    <p>Tintas originales para su impresora.</p>
+                    <a href="impresoras.html" class="btn" style="background:white; color:var(--naranja); font-size:0.8rem;">COTIZAR</a>
+                </div>
+
+            </div>
             <div class="product-card">
                 <i class="fas fa-headphones fa-3x" ></i>
                   
@@ -450,6 +480,7 @@
     function cambiarImagen(idVisor, rutaImagen) {
         document.getElementById(idVisor).src = rutaImagen;
     }
+
 </script>
 </body>
 </html>
