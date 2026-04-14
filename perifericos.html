@@ -224,7 +224,31 @@ footer {
     color: #888;
 }
 
+/* --- NUEVO ESTILO PARA EL TÍTULO --- */
+.section-title {
+    text-align: center;
+    margin-top: 30px; /* Espacio después del header */
+    margin-bottom: -10px; /* Acercalo un poco a los filtros */
+}
 
+.section-title h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--oscuro);
+    position: relative;
+    display: inline-block;
+}
+
+/* Opcional: una pequeña línea naranja debajo del título para estilo */
+.section-title h2::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 4px;
+    background: var(--naranja);
+    margin: 5px auto 0;
+    border-radius: 2px;
+}
 
     </style>
 </head>
@@ -238,7 +262,9 @@ footer {
             <div class="logo-text">ZAMORA TECH</div>
         </a>
     </header>
-
+    <div class="section-title">
+    <h2>Periféricos</h2>
+    </div>
     <section class="filter-section">
         <div class="filter-group">
             <label>Marcas</label>
@@ -246,19 +272,30 @@ footer {
                 <option value="todos">Todas</option>
                 <option value="genius">Genius</option>
                 <option value="logitec">Logitec</option>
+                <option value="quasad">Quasad</option>
                 <option value="argon">Argon</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label>Tipo</label>
+            <select id="f-capa">
+                <option value="todos">Todas</option>
+                <option value="teclados">Teclados</option>
+                <option value="mouse">Mouse</option>
+                <option value="camara">Camara</option>
+                <option value="microfono">Microfono</option>
             </select>
         </div>
     </section>
 
     <main class="catalog-container">
-        <div class="product-card" data-marca="genius">
+        <div class="product-card" data-marca="genius" data-capacidad="teclados">
             <div class="icon-circle">
                 <img src="img/genius_slin.jpeg" alt="Slimstar" class="img-producto">
             </div>
             <div>
                 <h3>Teclado Alambrico Genius</h3>
-                <p>SlimStar 260</p>
+                <p>SlimStar</p>
                 <span class="price">$12.00</span>
             </div>
             <div class="product-footer">
@@ -269,8 +306,56 @@ footer {
             </div>
         </div>
 
-       
+        <div class="product-card" data-marca="quasad" data-capacidad="mouse">
+            <div class="icon-circle">
+                <img src="https://nanotech-market.com/wp-content/uploads/2022/09/MOUQUAQM880PLBK-1-lg.webp" alt="Quasad" class="img-producto">
+            </div>
+            <div>
+                <h3>Mouse Quasad Inalambrico</h3>
+                <p>QM-880 PLUS+</p>
+                <span class="price">$18.00</span>
+            </div>
+            <div class="product-footer">
+                
+                <a href="https://wa.me/593960344187?text=Hola Zamora Tech quiero comprar+Mouse Quasad Inalambrico+QM-880 PLUS+" class="btn-ws-card" target="_blank">
+                    Pedir por WhatsApp
+                </a>
+            </div>
+        </div>
 
+        <div class="product-card" data-marca="genius" data-capacidad="teclados">
+            <div class="icon-circle">
+                <img src="https://www.idcmayoristas.com/wp-content/uploads/2024/10/Teclado-Genius-Gaming-Scorpion-K220-008615-1.png" alt="Genius" class="img-producto">
+            </div>
+            <div>
+                <h3>Teclado Gaming Genius</h3>
+                <p>Scorpion K220</p>
+                <span class="price">$25.00</span>
+            </div>
+            <div class="product-footer">
+                
+                <a href="https://wa.me/593960344187?text=Hola Zamora Tech quiero comprar+Mouse Quasad Inalambrico+QM-880 PLUS+" class="btn-ws-card" target="_blank">
+                    Pedir por WhatsApp
+                </a>
+            </div>
+        </div>
+
+        <div class="product-card" data-marca="Argon" data-capacidad="camara">
+            <div class="icon-circle">
+                <img src="img/cam_web.jpeg" alt="Argon" class="img-producto">
+            </div>
+            <div>
+                <h3>Camara Web Argon</h3>
+                <p>Calidad de 720p</p>
+                <span class="price">$18.00</span>
+            </div>
+            <div class="product-footer">
+                
+                <a href="https://wa.me/593960344187?text=Hola Zamora Tech quiero comprar+Mouse Quasad Inalambrico+QM-880 PLUS+" class="btn-ws-card" target="_blank">
+                    Pedir por WhatsApp
+                </a>
+            </div>
+        </div>
 
     </main>
 
@@ -281,15 +366,30 @@ footer {
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const selectMarca = document.getElementById('f-marca');
+            const selectCapa = document.getElementById('f-capa');
             const productos = document.querySelectorAll('.product-card');
 
-            selectMarca.addEventListener('change', () => {
-                const marca = selectMarca.value;
+            function ejecutarFiltro() {
+                const m = selectMarca.value;
+                const c = selectCapa.value;
+
                 productos.forEach(card => {
-                    const cardMarca = card.getAttribute('data-marca');
-                    card.style.display = (marca === 'todos' || marca === cardMarca) ? 'flex' : 'none';
+                    const cMarca = card.getAttribute('data-marca');
+                    const cCapa = card.getAttribute('data-capacidad');
+
+                    const matchMarca = (m === 'todos' || m === cMarca);
+                    const matchCapa = (c === 'todos' || c === cCapa);
+
+                    if (matchMarca && matchCapa) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
                 });
-            });
+            }
+
+            selectMarca.addEventListener('change', ejecutarFiltro);
+            selectCapa.addEventListener('change', ejecutarFiltro);
         });
     </script>
 <footer>
