@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tintas impresoras | Zamora Tech</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --naranja: #FF6600;
+            --naranja-hover: #e65c00;
+            --oscuro: #1a1a1a;
+            --blanco: #ffffff;
+            --gris-fondo: #f8f9fa;
+            --gris-suave: #eeeeee;
+            --sombra-suave: 0 4px 12px rgba(0,0,0,0.08);
+            --sombra-fuerte: 0 12px 24px rgba(0,0,0,0.15);
+        }
+
+        /* 1. Reset y Estilos Generales */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--gris-fondo); color: var(--oscuro); padding-bottom: 80px; }
+
+        /* 2. Header y Logo Link */
+        header {
+            background: var(--blanco);
+            padding: 15px 5%;
+            box-shadow: var(--sombra-suave);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .btn-volver {
+            text-decoration: none;
+            color: var(--oscuro);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .logo-link { text-decoration: none; transition: transform 0.3s ease; }
+        .logo-link:hover { transform: scale(1.05); }
+        .logo-text { font-weight: 800; color: var(--naranja); font-size: 1.2rem; }
+
+        /* 3. Barra de Filtros */
+        .filter-section {
+            background: var(--blanco);
+            margin: 20px auto;
+            width: fit-content;
+            padding: 15px 30px;
+            border-radius: 12px;
+            box-shadow: var(--sombra-suave);
+            display: flex;
+            gap: 20px;
+        }
+
+        .filter-group { display: flex; flex-direction: column; gap: 5px; width: 160px; }
+        .filter-group label { font-size: 0.75rem; font-weight: 700; color: #555; text-transform: uppercase; }
+        .filter-group select { 
+            padding: 10px; border-radius: 8px; border: 2px solid #eee; 
+            outline: none; background: #fff; font-weight: 500; cursor: pointer; 
+        }
+
+        /* 4. Grid de Productos */
+        .catalog-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 20px 5%;
+        }
+
+        /* 5. Tarjeta de Producto Premium */
+        .product-card {
+            background: var(--blanco);
+            border-radius: 18px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid var(--gris-suave);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--sombra-fuerte);
+            border-color: var(--naranja);
+        }
+
+        /* 6. La Vitrina de Imagen Mejorada */
+        .icon-circle {
+            background: #fdfdfd; 
+            width: 100%;
+            height: 180px; 
+            border-radius: 12px;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            overflow: hidden;
+            border: 1px solid #f5f5f5;
+        }
+
+        .img-producto {
+            max-width: 85% !important;
+            max-height: 85% !important;
+            object-fit: contain !important;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover .img-producto { transform: scale(1.1); }
+
+        /* 7. Textos y Precios */
+        .product-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--oscuro); margin-bottom: 4px; }
+        .product-card p { font-size: 0.85rem; color: #777; margin-bottom: 12px; min-height: 40px; }
+        .price { font-size: 1.6rem; font-weight: 800; color: var(--naranja); margin-bottom: 15px; display: block; }
+
+        /* Etiqueta de con Stock */
+        .badge-stock {
+            display: inline-block;
+            background-color: #B0F7B8; 
+            color: #0F401E;            
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            border: 1px solid #054D1D; 
+        }
+
+        /* Etiqueta de Sin Stock */
+        .badge-no-stock {
+            display: inline-block;
+            background-color: #ffebee; 
+            color: #c62828;            
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            border: 1px solid #ffcdd2; 
+        }
+
+
+        .btn-ws-card {
+            background: #25d366; color: var(--blanco); text-decoration: none;
+            padding: 12px; border-radius: 10px; font-weight: 700; font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+        .btn-ws-card:hover { background: #128c7e; }
+
+        /* 9. Botón WhatsApp Flotante */
+        .ws-float {
+            position: fixed; width: 60px; height: 60px; bottom: 25px; right: 25px;
+            background: #25d366; color: #fff; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 30px; box-shadow: 2px 4px 10px rgba(0,0,0,0.3);
+            z-index: 2000; text-decoration: none; animation: pulse-ws 2s infinite;
+        }
+
+        @keyframes pulse-ws {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* 10. Responsive */
+        @media (max-width: 480px) {
+            .filter-section { width: 90%; flex-direction: column; align-items: center; }
+            .filter-group { width: 100%; max-width: 250px; }
+            .icon-circle { height: 150px; }
+        }
+
+
+        /* Este es el contenedor que soluciona el problema */
+.product-footer {
+    display: flex;
+    flex-direction: column; /* Fuerza a que el botón se ubique DEBAJO del texto */
+    align-items: center;    /* Centra ambos elementos horizontalmente */
+    gap: 12px;              /* Espacio exacto entre "Sin Stock" y el botón */
+    margin-top: auto;       /* Empuja todo el bloque al fondo de la tarjeta */
+    width: 100%;
+}
+
+/* Estilo del botón para que no se vea pegado */
+.btn-ws-card {
+    width: 100%;            /* Ocupa todo el ancho disponible */
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    display: block;         /* Asegura que se comporte como un bloque */
+    margin-bottom: 25px;
+}
+
+/* Estilo de la etiqueta para que resalte debajo del precio */
+.badge-stock {
+    display: inline-block;
+    margin-bottom: 24;       /* Quitamos márgenes antiguos */
+
+}
+/* Estilo de la etiqueta para que resalte debajo del precio */
+.badge-no-stock {
+    display: inline-block;
+    margin-bottom: 24;       /* Quitamos márgenes antiguos */
+
+}
+
+/* --- ESTILO DEL PIE DE PÁGINA (FOOTER) --- */
+footer {
+    background: var(--blanco);
+    padding: 30px 0;
+    text-align: center;
+    border-top: 1px solid #eee;
+    margin-top: 50px;
+    width: 100%;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.footer-logo {
+    font-weight: 800;
+    color: var(--naranja);
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+.footer-rights {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+/* --- NUEVO ESTILO PARA EL TÍTULO --- */
+.section-title {
+    text-align: center;
+    margin-top: 30px; /* Espacio después del header */
+    margin-bottom: -10px; /* Acercalo un poco a los filtros */
+}
+
+.section-title h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--oscuro);
+    position: relative;
+    display: inline-block;
+}
+
+/* Opcional: una pequeña línea naranja debajo del título para estilo */
+.section-title h2::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 4px;
+    background: var(--naranja);
+    margin: 5px auto 0;
+    border-radius: 2px;
+}
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="btn-volver">
+            <i class="fas fa-chevron-left"></i> VOLVER
+        </a>
+        <a href="index.html" class="logo-link">
+            <div class="logo-text">ZAMORA TECH</div>
+        </a>
+    </header>
+    <div class="section-title">
+    <h2>Tintas</h2>
+    </div>
+    <section class="filter-section">
+        <div class="filter-group">
+            <label>Marcas</label>
+            <select id="f-marca">
+                <option value="todos">Todas</option>
+                <option value="epson">Epson</option>
+                <option value="hp">HP</option>
+                <option value="cannon">Cannon</option>
+                <option value="lexmark">Lexmark</option>
+            </select>
+        </div>
+        
+    </section>
+
+    <main class="catalog-container">
+        <div class="product-card" data-marca="epson" data-capacidad="epson">
+            <div class="icon-circle">
+                <img src="https://nomadaware.com.ec/wp-content/uploads/2022/12/TINTA-DE-IMPRESORA-EPSON-544-5.jpg" alt="Epson" class="img-producto">
+            </div>
+            <div>
+                <h3>Tintas Epson 544</h3>
+                <p>Cada unidad</p>
+                <span class="price">$15.00</span>
+                <span class="badge-stock">Con Stock</span>
+            </div>
+            <div class="product-footer">
+                
+                <a href="https://wa.me/593960344187?text=Cotizar+Genius+Slimstar" class="btn-ws-card" target="_blank">
+                    Pedir por WhatsApp
+                </a>
+            </div>
+        </div>
+
+        <div class="product-card" data-marca="hp" data-capacidad="hp">
+            <div class="icon-circle">
+                <img src="https://mecatechnology.net/wp-content/uploads/2023/01/KIT-DE-TINTA-HP.fw_.png" alt="HP" class="img-producto">
+            </div>
+            <div>
+                <h3>Tinta HP</h3>
+                <p>GT</p>
+                <span class="price">$15.00</span>
+                <span class="badge-no-stock">Sin Stock</span>
+
+            </div>
+            <div class="product-footer">
+                
+                <a href="https://wa.me/593960344187?text=Hola Zamora Tech quiero comprar+Mouse Quasad Inalambrico+QM-880 PLUS+" class="btn-ws-card" target="_blank">
+                    Pedir por WhatsApp
+                </a>
+            </div>
+        </div>
+
+        <div class="product-card" data-marca="Epson" data-capacidad="epson">
+            <div class="icon-circle">
+                <img src="https://compucentro.co/wp-content/uploads/tintas-epson-ecotank-t664-kit-x-4-magenta-cyan-yellow-black-1.webp" alt="Epson" class="img-producto">
+            </div>
+            <div>
+                <h3>Tintas Epson</h3>
+                <p>T664</p>
+                <span class="price">$25.00</span>
+                <span class="badge-no-stock">Sin Stock</span>
+            </div>
+            <div class="product-footer">
+                
+                <a href="https://wa.me/593960344187?text=Hola Zamora Tech quiero comprar+Mouse Quasad Inalambrico+QM-880 PLUS+" class="btn-ws-card"  target="_blank">
+                    Pedir por WhatsApp
+                </a>
+            </div>
+        </div>
+
+        <div class="product-card" data-marca="Epson" data-capacidad="epson">
+            <div class="icon-circle">
+                <img src="https://mipclista.com/1035-large_default/tinta-epson-504-original.jpg" alt="Epson" class="img-producto">
+            </div>
+            <div>
+                <h3>Tintas Epson</h3>
+                <p>504</p>
+                <span class="price">$15.00</span>
+                <span class="badge-no-stock">Sin Stock</span>
+
+            </div>
+            <div class="product-footer">
+                
+                <a href="https://wa.me/593960344187?text=Hola Zamora Tech quiero comprar+Mouse Quasad Inalambrico+QM-880 PLUS+" class="btn-ws-card" target="_blank">
+                    Pedir por WhatsApp
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <a href="https://wa.me/593960344187" class="ws-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const selectMarca = document.getElementById('f-marca');
+            const selectCapa = document.getElementById('f-capa');
+            const productos = document.querySelectorAll('.product-card');
+
+            function ejecutarFiltro() {
+                const m = selectMarca.value;
+                const c = selectCapa.value;
+
+                productos.forEach(card => {
+                    const cMarca = card.getAttribute('data-marca');
+                    const cCapa = card.getAttribute('data-capacidad');
+
+                    const matchMarca = (m === 'todos' || m === cMarca);
+                    const matchCapa = (c === 'todos' || c === cCapa);
+
+                    if (matchMarca && matchCapa) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            selectMarca.addEventListener('change', ejecutarFiltro);
+            selectCapa.addEventListener('change', ejecutarFiltro);
+        });
+    </script>
+<footer>
+    <div class="footer-content">
+        <div class="footer-logo">ZAMORA TECH</div>
+        <p class="footer-rights">© 2026 Todos los derechos reservados.</p>
+    </div>
+</footer>
+</body>
+</html>
