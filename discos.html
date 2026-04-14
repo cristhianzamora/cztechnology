@@ -3,28 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo de Discos | Zamora Tech</title>
+    <title>Almacenamiento | Zamora Tech</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --naranja: #FF6600;
-            --naranja-dark: #e65c00;
+            --naranja-hover: #e65c00;
             --oscuro: #1a1a1a;
             --blanco: #ffffff;
             --gris-fondo: #f8f9fa;
-            --sombra: 0 4px 15px rgba(0,0,0,0.1);
+            --gris-suave: #eeeeee;
+            --sombra-suave: 0 4px 12px rgba(0,0,0,0.08);
+            --sombra-fuerte: 0 12px 24px rgba(0,0,0,0.15);
         }
 
+        /* 1. Reset y Estilos Generales */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background-color: var(--gris-fondo); color: var(--oscuro); padding-bottom: 80px; }
 
-        /* Header Premium */
+        /* 2. Header y Logo Link */
         header {
             background: var(--blanco);
             padding: 15px 5%;
-            box-shadow: var(--sombra);
+            box-shadow: var(--sombra-suave);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -43,113 +46,127 @@
             font-size: 0.9rem;
         }
 
+        .logo-link { text-decoration: none; transition: transform 0.3s ease; }
+        .logo-link:hover { transform: scale(1.05); }
         .logo-text { font-weight: 800; color: var(--naranja); font-size: 1.2rem; }
 
-        /* Barra de Filtros Responsiva */
+        /* 3. Barra de Filtros */
         .filter-section {
             background: var(--blanco);
-            margin: 20px 5%;
-            padding: 20px;
+            margin: 20px auto;
+            width: fit-content;
+            padding: 15px 30px;
             border-radius: 12px;
-            box-shadow: var(--sombra);
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
+            box-shadow: var(--sombra-suave);
+            display: flex;
+            gap: 20px;
         }
 
-        .filter-group { display: flex; flex-direction: column; gap: 5px; }
-        .filter-group label { font-size: 0.8rem; font-weight: 700; color: #555; text-transform: uppercase; }
-        
-        .filter-group select {
-            padding: 10px;
-            border-radius: 8px;
-            border: 2px solid #eee;
-            outline: none;
-            background: #fff;
-            font-weight: 500;
-            cursor: pointer;
+        .filter-group { display: flex; flex-direction: column; gap: 5px; width: 160px; }
+        .filter-group label { font-size: 0.75rem; font-weight: 700; color: #555; text-transform: uppercase; }
+        .filter-group select { 
+            padding: 10px; border-radius: 8px; border: 2px solid #eee; 
+            outline: none; background: #fff; font-weight: 500; cursor: pointer; 
         }
 
-        .filter-group select:focus { border-color: var(--naranja); }
-
-        /* Grid de Productos */
+        /* 4. Grid de Productos */
         .catalog-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 20px;
-            padding: 0 5%;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 20px 5%;
         }
 
+        /* 5. Tarjeta de Producto Premium */
         .product-card {
             background: var(--blanco);
-            border-radius: 15px;
+            border-radius: 18px;
             padding: 20px;
             text-align: center;
-            transition: 0.3s ease;
-            border: 1px solid #efefef;
+            border: 1px solid var(--gris-suave);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transform: translateY(-10px);
+            box-shadow: var(--sombra-fuerte);
+            border-color: var(--naranja);
         }
 
+        /* 6. La Vitrina de Imagen Mejorada */
         .icon-circle {
-            background: #fff5ed;
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            display: flex;
+            background: #fdfdfd; 
+            width: 100%;
+            height: 180px; 
+            border-radius: 12px;
+            display: flex !important;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 15px;
-            color: var(--naranja);
-            font-size: 2rem;
-        }
-
-        .product-card h3 { font-size: 1rem; margin-bottom: 5px; font-weight: 700; }
-        .product-card p { font-size: 0.8rem; color: #888; margin-bottom: 15px; }
-
-        .price {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--oscuro);
-            display: block;
             margin-bottom: 15px;
+            overflow: hidden;
+            border: 1px solid #f5f5f5;
         }
+
+        .img-producto {
+            max-width: 85% !important;
+            max-height: 85% !important;
+            object-fit: contain !important;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover .img-producto { transform: scale(1.1); }
+
+        /* 7. Textos y Precios */
+        .product-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--oscuro); margin-bottom: 4px; }
+        .product-card p { font-size: 0.85rem; color: #777; margin-bottom: 12px; min-height: 40px; }
+        .price { font-size: 1.6rem; font-weight: 800; color: var(--naranja); margin-bottom: 15px; display: block; }
+
+        /* Etiqueta de con Stock */
+        .badge-stock {
+            display: inline-block;
+            background-color: #B0F7B8; 
+            color: #0F401E;            
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            border: 1px solid #054D1D; 
+        }
+
+        /* Etiqueta de Sin Stock */
+        .badge-no-stock {
+            display: inline-block;
+            background-color: #ffebee; 
+            color: #c62828;            
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            border: 1px solid #ffcdd2; 
+        }
+
 
         .btn-ws-card {
-            background: #25d366;
-            color: white;
-            text-decoration: none;
-            padding: 10px;
-            border-radius: 8px;
-            display: block;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: 0.3s;
+            background: #25d366; color: var(--blanco); text-decoration: none;
+            padding: 12px; border-radius: 10px; font-weight: 700; font-size: 0.9rem;
+            transition: background 0.3s ease;
         }
-
         .btn-ws-card:hover { background: #128c7e; }
 
-        /* Botón Flotante WhatsApp con Pulso */
+        /* 9. Botón WhatsApp Flotante */
         .ws-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 25px;
-            right: 25px;
-            background: #25d366;
-            color: #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            box-shadow: 2px 4px 10px rgba(0,0,0,0.3);
-            z-index: 2000;
-            text-decoration: none;
-            animation: pulse-ws 2s infinite;
+            position: fixed; width: 60px; height: 60px; bottom: 25px; right: 25px;
+            background: #25d366; color: #fff; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 30px; box-shadow: 2px 4px 10px rgba(0,0,0,0.3);
+            z-index: 2000; text-decoration: none; animation: pulse-ws 2s infinite;
         }
 
         @keyframes pulse-ws {
@@ -158,69 +175,47 @@
             100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
-        /* Responsive movil */
+        /* 10. Responsive */
         @media (max-width: 480px) {
-            .catalog-container { grid-template-columns: 1fr; }
-            .filter-section { margin: 15px 5%; }
+            .filter-section { width: 90%; flex-direction: column; align-items: center; }
+            .filter-group { width: 100%; max-width: 250px; }
+            .icon-circle { height: 150px; }
         }
-        /* Etiqueta de Sin Stock */
+
+
+        /* Este es el contenedor que soluciona el problema */
+.product-footer {
+    display: flex;
+    flex-direction: column; /* Fuerza a que el botón se ubique DEBAJO del texto */
+    align-items: center;    /* Centra ambos elementos horizontalmente */
+    gap: 12px;              /* Espacio exacto entre "Sin Stock" y el botón */
+    margin-top: auto;       /* Empuja todo el bloque al fondo de la tarjeta */
+    width: 100%;
+}
+
+/* Estilo del botón para que no se vea pegado */
+.btn-ws-card {
+    width: 100%;            /* Ocupa todo el ancho disponible */
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    display: block;         /* Asegura que se comporte como un bloque */
+    margin-bottom: 25px;
+}
+
+/* Estilo de la etiqueta para que resalte debajo del precio */
+.badge-stock {
+    display: inline-block;
+    margin-bottom: 24;       /* Quitamos márgenes antiguos */
+
+}
+/* Estilo de la etiqueta para que resalte debajo del precio */
 .badge-no-stock {
     display: inline-block;
-    background-color: #ffebee; /* Rojo muy claro (Soft Red) */
-    color: #c62828;            /* Rojo oscuro para el texto */
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin-bottom: 15px;
-    border: 1px solid #ffcdd2; /* Borde sutil para dar definición */
+    margin-bottom: 24;       /* Quitamos márgenes antiguos */
+
 }
 
-/* Opcional: Estilo para el botón cuando no hay stock */
-.btn-ws-card.disabled {
-    background-color: #ccc;
-    pointer-events: none; /* Desactiva el clic si prefieres */
-    filter: grayscale(1);
-    opacity: 0.7;
-}
-    /* Quita el subrayado y mantiene el color original del logo */
-        .logo-link {
-        text-decoration: none;
-        transition: 0.3s;
-        }
-
-        /* Efecto opcional: que brille un poco al pasar el mouse */
-        .logo-link:hover {
-         opacity: 0.8;
-        transform: scale(1.05); /* Un pequeño aumento de tamaño al tocarlo */
-        }
-
-        /* --- NUEVO ESTILO PARA EL TÍTULO --- */
-.section-title {
-    text-align: center;
-    margin-top: 30px; /* Espacio después del header */
-    margin-bottom: -10px; /* Acercalo un poco a los filtros */
-}
-
-.section-title h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--oscuro);
-    position: relative;
-    display: inline-block;
-}
-
-/* Opcional: una pequeña línea naranja debajo del título para estilo */
-.section-title h2::after {
-    content: '';
-    display: block;
-    width: 50px;
-    height: 4px;
-    background: var(--naranja);
-    margin: 5px auto 0;
-    border-radius: 2px;
-}
 /* --- ESTILO DEL PIE DE PÁGINA (FOOTER) --- */
 footer {
     background: var(--blanco);
@@ -250,6 +245,32 @@ footer {
     color: #888;
 }
 
+/* --- NUEVO ESTILO PARA EL TÍTULO --- */
+.section-title {
+    text-align: center;
+    margin-top: 30px; /* Espacio después del header */
+    margin-bottom: -10px; /* Acercalo un poco a los filtros */
+}
+
+.section-title h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--oscuro);
+    position: relative;
+    display: inline-block;
+}
+
+/* Opcional: una pequeña línea naranja debajo del título para estilo */
+.section-title h2::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 4px;
+    background: var(--naranja);
+    margin: 5px auto 0;
+    border-radius: 2px;
+}
+
     </style>
 </head>
 <body>
@@ -257,100 +278,216 @@ footer {
     <header>
         <a href="index.html" class="btn-volver">
             <i class="fas fa-chevron-left"></i> VOLVER
-        
         </a>
         <a href="index.html" class="logo-link">
-        <div class="logo-text">ZAMORA TECH</div>
+            <div class="logo-text">ZAMORA TECH</div>
         </a>
-        
     </header>
     <div class="section-title">
-    <h2>Discos</h2>
+    <h2>Almacenamiento</h2>
     </div>
     <section class="filter-section">
         <div class="filter-group">
-            <label>Marca</label>
+            <label>Marcas</label>
             <select id="f-marca">
                 <option value="todos">Todas</option>
+                <option value="adata">Adata</option>
+                <option value="hp">HP</option>
                 <option value="kingston">Kingston</option>
-                <option value="Adata">Adata</option>
-                <option value="wd">Western Digital</option>
+                <option value="wd">Western Digital (WD)</option>
+                <option value="samsung">Samsung</option>
+                <option value="crucial">Crucial</option>
+                <option value="sandisk">Sandisk</option>
             </select>
         </div>
+
         <div class="filter-group">
             <label>Capacidad</label>
             <select id="f-capa">
                 <option value="todos">Todas</option>
-                <option value="120gb">120 GB</option>
-                <option value="240gb">240 GB</option>
-                <option value="480gb">480 GB</option>
-                <option value="1tb">1 TB</option>
+                <option value="8gb">8GB</option>
+                <option value="16gb">16GB</option>
+                <option value="32gb">32GB</option>
+                <option value="64gb">64GB</option>
+                <option value="120gb">120GB</option>
+                <option value="256gb">256GB</option>
+                <option value="512gb">512GB</option>
+                <option value="1tb">1TB</option>
+
             </select>
         </div>
+        
     </section>
 
     <main class="catalog-container">
-        <div class="product-card" data-marca="kingston" data-capacidad="120gb">
-            <div class="icon-circle"><i class="fas fa-hdd"></i></div>
-            <h3>SSD Kingston A400</h3>
-            <p>SATA - 120GB</p>
-            <span class="price">$45.00</span>
-            <span class="badge-no-stock">Sin Stock</span>
-            <a href="https://wa.me/593960344187?text=Hola Zamora Tech quiero Cotizar+Kingston+480GB" class="btn-ws-card" target="_blank">Pedir por WhatsApp</a>
+        <div class="product-card" data-marca="kingston" data-capacidad="64gb">
+            <div class="icon-circle">
+                <img src="https://b4473592.smushcdn.com/4473592/wp-content/uploads/2023/01/MEMORIA-USB-KINGSTON-EXODIA-DTX64GB-1-600x600.jpg?lossy=2&strip=1&webp=1" alt="Kingston" class="img-producto">
+            </div>
+            <div>
+                <h3>Flash Memory kingston</h3>
+                <p>64 GB</p>
+                <span class="price">$15.00</span>
+                <span class="badge-stock">Con Stock</span>
+            </div>
+            <div class="product-footer">
+                
+                <a href="https://wa.me/593960344187?text=Cotizar+Genius+Slimstar" class="btn-ws-card" target="_blank">
+                    Pedir por WhatsApp
+                </a>
+            </div>
         </div>
 
-        <div class="product-card" data-marca="Adata" data-capacidad="1tb">
-            <div class="icon-circle"><i class="fas fa-hdd"></i></div>
-            <h3>SSD Adata A400</h3>
-            <p>SATA 2.5 - 1TB</p>
-            <span class="price">$200.00</span>
-            <span class="badge-no-stock">Sin Stock</span>
-            <a href="https://wa.me/593960344187?text=Hola Zamora Tech quiero Cotizar+Kingston+480GB" class="btn-ws-card" target="_blank">Pedir por WhatsApp</a>
+        <div class="product-card" data-marca="hp" data-capacidad="120gb">
+            <div class="icon-circle">
+                <img src="https://store.telalca.com/wp-content/uploads/2023/07/hpessdint345m7aa_abb-1.jpg" alt="HP" class="img-producto">
+            </div>
+            <div>
+                <h3>Disco SSD HP</h3>
+                <p>120 GB</p>
+                <span class="price">$40.00</span>
+                <span class="badge-no-stock">Sin Stock</span>
+
+            </div>
+            <div class="product-footer">
+                
+                <a href="https://wa.me/593960344187?text=Hola Zamora Tech quiero comprar+Mouse Quasad Inalambrico+QM-880 PLUS+" class="btn-ws-card" target="_blank">
+                    Pedir por WhatsApp
+                </a>
+            </div>
         </div>
 
-        <div class="product-card" data-marca="kingston" data-capacidad="480gb">
-            <div class="icon-circle"><i class="fas fa-hdd"></i></div>
-            <h3>SSD Kingston A400</h3>
-            <p>SATA - 480GB</p>
-            <span class="price">$100.00</span>
-            <span class="badge-no-stock">Sin Stock</span>
-            <a href="https://wa.me/593960344187?text=Hola Zamora Tech quiero Cotizar+Kingston+480GB" class="btn-ws-card" target="_blank">Pedir por WhatsApp</a>
+        <div class="product-card" data-marca="adata" data-capacidad="64gb">
+            <div class="icon-circle">
+                <img src="https://www.idcmayoristas.com/wp-content/uploads/2024/10/micro-sdxc-adata-64gb-with-adapter-uhs-i-class-10-ausdx64guicl10-ra1-tcws-1.png" alt="Adata" class="img-producto">
+            </div>
+            <div>
+                <h3>Memoria MicroSD</h3>
+                <p>64 GB</p>
+                <span class="price">$15.00</span>
+                <span class="badge-stock">Con Stock</span>
+            </div>
+            <div class="product-footer">
+                
+                <a href="https://wa.me/593960344187?text=Hola Zamora Tech quiero comprar+Mouse Quasad Inalambrico+QM-880 PLUS+" class="btn-ws-card"  target="_blank">
+                    Pedir por WhatsApp
+                </a>
+            </div>
         </div>
 
-        <div class="product-card" data-marca="kingston" data-capacidad="1tb">
-            <div class="icon-circle"><i class="fas fa-hdd"></i></div>
-            <h3>SSD Kingston A400</h3>
-            <p>SATA - 1TB</p>
-            <span class="price">$200.00</span>
-            <span class="badge-no-stock">Sin Stock</span>
-            <a href="https://wa.me/593960344187?text=Hola Zamora Tech quiero Cotizar+Kingston+480GB" class="btn-ws-card" target="_blank">Pedir por WhatsApp</a>
+        <div class="product-card" data-marca="sandisk" data-capacidad="16gb">
+            <div class="icon-circle">
+                <img src="https://www.idcmayoristas.com/wp-content/uploads/2023/04/Flash-Memory-16gb-Sandisk-Cruzer-Blade-Black-Red-Cz50-Usb-2.0-%E2%80%93-Sdcz50-016g-b35.png" alt="Sandisk" class="img-producto">
+            </div>
+            <div>
+                <h3>Flash Memori Sandisk</h3>
+                <p>16 GB</p>
+                <span class="price">$12.00</span>
+                <span class="badge-stock">Con Stock</span>
+
+            </div>
+            <div class="product-footer">
+                
+                <a href="https://wa.me/593960344187?text=Hola Zamora Tech quiero comprar+Mouse Quasad Inalambrico+QM-880 PLUS+" class="btn-ws-card" target="_blank">
+                    Pedir por WhatsApp
+                </a>
+            </div>
         </div>
 
-        <div class="product-card" data-marca="Adata" data-capacidad="1tb">
-            <div class="icon-circle"><i class="fas fa-bolt"></i></div>
-            <h3>M.2 NVMe Crucial P3</h3>
-            <p>High Speed - 1TB</p>
-            <span class="price">$200.00</span>
-            <span class="badge-no-stock">Sin Stock</span>
-            <a href="https://wa.me/593960344187?text=Hola Zamora Tech quiero Cotizar+Crucial+1TB" class="btn-ws-card" target="_blank">Pedir por WhatsApp</a>
+        <div class="product-card" data-marca="samsung" data-capacidad="512gb">
+            <div class="icon-circle">
+                <img src="https://m.media-amazon.com/images/I/614JOMH0-ES.jpg" alt="Samsung" class="img-producto">
+            </div>
+            <div>
+                <h3>Disco SSD Samsung</h3>
+                <p>512 GB</p>
+                <span class="price">$100.00</span>
+                <span class="badge-no-stock">Sin Stock</span>
+
+            </div>
+            <div class="product-footer">
+                
+                <a href="https://wa.me/593960344187?text=Hola Zamora Tech quiero comprar+Mouse Quasad Inalambrico+QM-880 PLUS+" class="btn-ws-card" target="_blank">
+                    Pedir por WhatsApp
+                </a>
+            </div>
         </div>
 
-        <div class="product-card" data-marca="kingston" data-capacidad="240gb">
-            <div class="icon-circle"><i class="fas fa-hdd"></i></div>
-            <h3>SSD Kingston A400</h3>
-            <p>SATA - 240GB</p>
-            <span class="price">$70.00</span>
-            <span class="badge-no-stock">Sin Stock</span>
-            <a href="https://wa.me/593960344187?text=Hola Zamora Tech quiero Cotizar+Kingston+240GB" class="btn-ws-card" target="_blank">Pedir por WhatsApp</a>
+        <div class="product-card" data-marca="kingston" data-capacidad="256gb">
+            <div class="icon-circle">
+                <img src="https://computronica.com.ec/wp-content/uploads/2024/06/713l2VZEN0L._AC_UF8941000_QL80_.jpg" alt="Kingston" class="img-producto">
+            </div>
+            <div>
+                <h3>Disco SSD Kingston</h3>
+                <p>Sata 2.5 de 480 GB</p>
+                <span class="price">$100.00</span>
+                <span class="badge-no-stock">Sin Stock</span>
+
+            </div>
+            <div class="product-footer">
+                
+                <a href="https://wa.me/593960344187?text=Hola Zamora Tech quiero comprar+Mouse Quasad Inalambrico+QM-880 PLUS+" class="btn-ws-card" target="_blank">
+                    Pedir por WhatsApp
+                </a>
+            </div>
         </div>
 
-        <div class="product-card" data-marca="wd" data-capacidad="1tb">
-            <div class="icon-circle"><i class="fas fa-hdd"></i></div>
-            <h3>Western Digital</h3>
-            <p>SATA - 1TB</p>
-            <span class="price">$200.00</span>
-            <span class="badge-no-stock">Sin Stock</span>
-            <a href="https://wa.me/593960344187?text=Hola Zamora Tech quiero Cotizar+Western Digital+1TB" class="btn-ws-card" target="_blank">Pedir por WhatsApp</a>
+<div class="product-card" data-marca="kingston" data-capacidad="1tb">
+            <div class="icon-circle">
+                <img src="https://m.media-amazon.com/images/I/51FyonshCpL._AC_UF894,1000_QL80_.jpg" alt="Kingston" class="img-producto">
+            </div>
+            <div>
+                <h3>Disco SSD Kingston</h3>
+                <p>PCIE M.2 NVME de 1TB</p>
+                <span class="price">$200.00</span>
+                <span class="badge-no-stock">Sin Stock</span>
+
+            </div>
+            <div class="product-footer">
+                
+                <a href="https://wa.me/593960344187?text=Hola Zamora Tech quiero comprar+Mouse Quasad Inalambrico+QM-880 PLUS+" class="btn-ws-card" target="_blank">
+                    Pedir por WhatsApp
+                </a>
+            </div>
+        </div>
+
+
+        <div class="product-card" data-marca="adata" data-capacidad="120gb">
+            <div class="icon-circle">
+                <img src="https://www.venprotech.com/wp-content/uploads/2023/02/77-600x600-1.png" alt="Adata" class="img-producto">
+            </div>
+            <div>
+                <h3>Memoria MicroSD Adata</h3>
+                <p>128 GB</p>
+                <span class="price">$23.00</span>
+                <span class="badge-stock">Con Stock</span>
+
+            </div>
+            <div class="product-footer">
+                
+                <a href="https://wa.me/593960344187?text=Hola Zamora Tech quiero comprar+Mouse Quasad Inalambrico+QM-880 PLUS+" class="btn-ws-card" target="_blank">
+                    Pedir por WhatsApp
+                </a>
+            </div>
+        </div>
+
+        <div class="product-card" data-marca="kingston" data-capacidad="32gb">
+            <div class="icon-circle">
+                <img src="https://http2.mlstatic.com/D_NQ_NP_849946-MLA42003364738_052020-O.webp" alt="Kingston" class="img-producto">
+            </div>
+            <div>
+                <h3>Memoria MicroSD kingston</h3>
+                <p>32 GB</p>
+                <span class="price">$23.00</span>
+                <span class="badge-stock">Con Stock</span>
+
+            </div>
+            <div class="product-footer">
+                
+                <a href="https://wa.me/593960344187?text=Hola Zamora Tech quiero comprar+Mouse Quasad Inalambrico+QM-880 PLUS+" class="btn-ws-card" target="_blank">
+                    Pedir por WhatsApp
+                </a>
+            </div>
         </div>
     </main>
 
@@ -358,7 +495,7 @@ footer {
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <script>
+   <script>
         document.addEventListener('DOMContentLoaded', () => {
             const selectMarca = document.getElementById('f-marca');
             const selectCapa = document.getElementById('f-capa');
