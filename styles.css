@@ -98,6 +98,59 @@
     border: 2px solid transparent;
 }
 
+/* Seccion de confianza */
+.trust-section {
+    background-color: #f9f9f9;
+    padding: 10px 10px;
+    scroll-margin-top: 80px;
+}
+
+/* Cuadrícula de contadores */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.stat-item i {
+    font-size: 3rem;
+    color: var(--naranja);
+    margin-bottom: 15px;
+}
+
+.stat-item h3 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 5px 0;
+}
+
+/* Cuadrícula de beneficios adicionales */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.feature-card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    border-left: 5px solid var(--naranja);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+
+.feature-card h4 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
 .thumb.active {
     opacity: 1;
     border-color: var(--naranja);
