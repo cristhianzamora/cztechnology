@@ -5,19 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zamora Tech | Servicio Técnico y Ventas</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
     <style>
         /* Estilos para el botón flotante */
 .whatsapp-float {
     position: fixed;
     width: 60px;
     height: 60px;
-    bottom: 40px;
+    bottom: 30px;
     right: 18px;
     background-color: #25d366;
     color: #FFF;
     border-radius: 50px;
     text-align: center;
-    font-size: 30px;
+    font-size: 40px;
     box-shadow: 2px 2px 3px #999;
     z-index: 10000; /* Asegura que esté por encima de todo */
     display: flex;
@@ -71,7 +72,13 @@
             z-index: 1000;
         }
 
-        .logo { font-size: 1.6rem; font-weight: 800; color: var(--naranja); letter-spacing: 1px; }
+        .logo { 
+            font-size: 1.3rem; 
+            font-weight: 800; 
+            color: var(--naranja); 
+            letter-spacing: 1px;
+
+        }
 
         .nav-links a {
             text-decoration: none;
@@ -87,7 +94,7 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?q=80&w=2070&auto=format&fit=crop');
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('img/zamoratech.png');
             background-size: cover;
             background-position: center;
             height: 450px;
@@ -98,6 +105,7 @@
             color: white;
             text-align: center;
             padding: 20px;
+            scroll-margin-top: 80px;
         }
 
         .hero h1 { font-size: 3.5rem; margin-bottom: 15px; }
@@ -105,7 +113,7 @@
 
         /* Contenedores */
         .container { padding: 60px 8%; }
-        h2 { text-align: center; margin-bottom: 50px; font-size: 2rem; position: relative; text-transform: uppercase; }
+        h2 { text-align: center; margin-bottom: 50px; font-size: 1.5rem; position: relative; text-transform: uppercase; }
         h2::after { content: ''; width: 60px; height: 4px; background: var(--naranja); position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); }
 
         /* SECCIÓN 1: TARIFARIO DE MANTENIMIENTO */
@@ -276,12 +284,13 @@
 <body>
 
     <nav>
-        <div class="logo">ZAMORA TECH</div>
+        
+        <div class="logo"> ZAMORA TECH </div>
         <div class="nav-links">
             <a href="#inicio">Inicio</a>
             <a href="#precios">Precios</a>
             <a href="#productos">Productos</a>
-            <a href="#portafolios">Portafolios</a>
+            <a href="#portfolios">Portafolios</a>
             <a href="#contacto">Contacto</a>
         </div>
     </nav>
@@ -408,32 +417,86 @@
     
     </div>
     </section>
-
-    <section class="container" id="portafolios">
+  
+    <section class="portfolio-showcase" id="portfolios">
         <h2>Trabajos Realizados</h2>
-        <div class="portafolios-grid">
+        <h3 style="text-align: center;">Nuestro Portafolios</h3>
             <div class="portafolios-item">
-                <div class="portafolios-img-container">
-                    <img src="img/placa.jpeg" class="img-dynamic" 
-                        onmouseover="this.src='img/suciedad.jpeg'" 
-                        onmouseout="this.src='img/placa.jpeg'"> 
-                   </div> 
-                <div class="portafolios-info">
-                    <h4>Mantenimiento Generales</h4>
-                    <p>Limpieza profunda de todo los componentes y Cambios de pasta térmica de alto rendimiento.</p>
+        <div class="main-carousel">
+            <div class="carousel-track">
+                <div class="portfolio-slide active">
+                    <img src="img/cooler.jpeg" alt="Procesador">
+                    <div class="slide-overlay">
+                        <h4>Limpieza interna de Laptops</h4>
+                        <p>Limpieza profunda del cooler y procesador.</p>
+                    </div>
+                </div>
+                <div class="portfolio-slide">
+                    <img src="img/cpul.jpeg" alt="Hardare">
+                    <div class="slide-overlay">
+                        <h4>Cambios de Discos HDD a SDD</h4>
+                        <p>Mayor velicidad de apertura y cierre.</p>
+                    </div>
+                </div>
+                <div class="portfolio-slide">
+                    <img src="img/bate.jpeg" alt="Baterias">
+                    <div class="slide-overlay">
+                        <h4>Baterias</h4>
+                        <p>Reemplazo de baterias Dell.</p>
+                    </div>
+                </div>
+                <div class="portfolio-slide">
+                    <img src="img/bateria.jpeg" alt="Baterias">
+                    <div class="slide-overlay">
+                        <h4>Baterias</h4>
+                        <p>Reemplazo de baterias HP</p>
+                    </div>
+                </div>
+                <div class="portfolio-slide">
+                    <img src="img/limpio.jpeg" alt="Reemplazo de componentes">
+                    <div class="slide-overlay">
+                        <h4>PC de escritorio</h4>
+                        <p>Limpieza profunda </p>
+                    </div>
+                </div>
+                <div class="portfolio-slide">
+                    <img src="img/placa.jpeg" alt="Reemplazo de componentes">
+                    <div class="slide-overlay">
+                        <h4>PC de escritorio</h4>
+                        <p>Limpieza profunda y cambio de pasta térmica </p>
+                    </div>
+                </div>
+                <div class="portfolio-slide">
+                    <img src="img/display.jpeg" alt="Reemplazo de componentes">
+                    <div class="slide-overlay">
+                        <h4>Pantalla de Laptops</h4>
+                        <p>Reemplazo de Pantalla </p>
+                    </div>
+                </div>
+                <div class="portfolio-slide">
+                    <img src="img/ram.jpeg" alt="Reemplazo de componentes">
+                    <div class="slide-overlay">
+                        <h4>Memoria Ram</h4>
+                        <p>Aumentos de memoria, o reemplazo por daños   </p>
+                    </div>
                 </div>
             </div>
-            <div class="portafolios-item">
-                <div class="portafolios-img-container">
-                    <img src="img/cpu.jpeg" class="img-dynamic" 
-                        onmouseover="this.src='img/cpul.jpeg'" 
-                        onmouseout="this.src='img/cpu.jpeg'">
-                </div>
-                <div class="portafolios-info">
-                    <h4>Repotenciación Laptop y PCs</h4>
-                    <p>Instalación de SSD, Memorias RAM y mejora de rendimiento en sistema Windows, Linux y MacOS.</p>
-                </div>
-            </div>
+    
+            <button class="nav-btn prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="nav-btn next"><i class="fas fa-chevron-right"></i></button>
+            <button class="pause-btn" id="btnPause"><i class="fas fa-pause"></i></button>
+        </div>
+    
+        <div class="thumbnails-container">
+            <img src="img/cooler.jpeg" class="thumb active" onclick="jumpToSlide(0)">
+            <img src="img/cpul.jpeg" class="thumb" onclick="jumpToSlide(1)">
+            <img src="img/bate.jpeg" class="thumb" onclick="jumpToSlide(2)">
+            <img src="img/bateria.jpeg" class="thumb" onclick="jumpToSlide(3)">
+            <img src="img/limpio.jpeg" class="thumb" onclick="jumpToSlide(4)">
+            <img src="img/placa.jpeg" class="thumb" onclick="jumpToSlide(5)">
+            <img src="img/display.jpeg" class="thumb" onclick="jumpToSlide(6)">
+            <img src="img/ram.jpeg" class="thumb" onclick="jumpToSlide(7)">
+
         </div>
     </section>
 
@@ -441,7 +504,7 @@
         <div class="footer-grid">
             <div>
                 <h4>SOBRE ZAMORA TECH</h4>
-                <p>Soporte técnico en repotenciación y mantenimiento preventivo/correctivo de equipos informáticos en Portoviejo.</p>
+                <p>Soporte técnico en repotenciación y mantenimiento preventivo / correctivo de equipos informáticos en Portoviejo.</p>
             </div>
             <div>
                 <h4>CONTACTO</h4>
@@ -482,5 +545,8 @@
     }
 
 </script>
+<body>
+    <script src="folder.js"></script>
+</body>
 </body>
 </html>
