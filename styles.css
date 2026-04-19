@@ -98,6 +98,12 @@
     border: 2px solid transparent;
 }
 
+.thumb.active {
+    opacity: 1;
+    border-color: var(--naranja);
+    transform: scale(1.1);
+}
+
 /* Seccion de confianza */
 .trust-section {
     background-color: #f9f9f9;
@@ -150,9 +156,4 @@
     color: #333;
     margin-bottom: 10px;
     font-size: 1.2rem;
-}
-.thumb.active {
-    opacity: 1;
-    border-color: var(--naranja);
-    transform: scale(1.1);
 }
