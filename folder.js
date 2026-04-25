@@ -32,3 +32,5 @@ pauseBtn.addEventListener('click', () => {
     isPaused = !isPaused;
     pauseBtn.innerHTML = isPaused ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>';
 });
+
+
