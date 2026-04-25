@@ -274,18 +274,60 @@
     70% { box-shadow: 0 0 0 10px rgba(255, 102, 0, 0); }
     100% { box-shadow: 0 0 0 0 rgba(255, 102, 0, 0); }
 }
-
+@media screen and (max-width: 768px) {
 .nav-moderno ul {
     display:  inline-flex;
     list-style: none;
     gap: 5px;
-    justify-content: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 10px;
+    width: 90%;
+    justify-content: flex-start;
     background: #fff; /* O el color de tu fondo actual */
     padding: 4px;
     border-radius: 50px;
+    margin: 0 auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     
 }
+/* Ocultar barra de scroll en Chrome, Safari y Opera */
+.contenedor-menu::-webkit-scrollbar {
+    display: none;
+}
+/* Ajuste de los botones para que no se encojan */
 
+.contenedor-menu a {
+    flex: 0 0 auto;      /* Importante: evita que los botones se deformen */
+    font-size: 14px;
+    padding: 8px 16px;
+}
+
+/* Centramos el nombre de la empresa arriba del menú */
+.header-container { /* Cambia por el nombre de tu contenedor principal */
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+}
+@media screen and (max-width: 768px) {
+    .nav-moderno {
+        position: relative;
+    }
+    /* Sombra sutil a la derecha para indicar scroll */
+    .nav-moderno::after {
+        content: '';
+        position: absolute;
+        top: 0; right: 0;
+        width: 30px;
+        height: 100%;
+        background: linear-gradient(to left, rgba(255,255,255,0.9), transparent);
+        pointer-events: none;
+        border-radius: 0 50px 50px 0;
+    }
+}
 .nav-moderno ul li a {
     text-decoration: none;
     color: #333;
