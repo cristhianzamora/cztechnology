@@ -12,6 +12,7 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="img/zticon.png">
     <style>
         /* Estilos para el botón flotante */
 .whatsapp-float {
@@ -57,6 +58,7 @@
             --naranja: #FF6600;
             --blanco: #ffffff;
             --gris-claro: #f8f9fa;
+            
             --oscuro: #212529;
             --whatsapp: #25D366;
         }
@@ -81,6 +83,7 @@
         .logo { 
             font-size: 1.3rem; 
             font-weight: 800; 
+            font-family: 'Arial Black', sans-serif;
             color: var(--naranja); 
             letter-spacing: 1px;
 
@@ -118,7 +121,7 @@
         .hero p { font-size: 1.2rem; max-width: 700px; margin-bottom: 30px; }
 
         /* Contenedores */
-        .container { padding: 60px 8%; }
+        .container { padding: 50px 8%; }
         h2 { text-align: center; margin-bottom: 50px; font-size: 1.5rem; position: relative; text-transform: uppercase; }
         h2::after { content: ''; width: 60px; height: 4px; background: var(--naranja); position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); }
 
@@ -159,7 +162,7 @@
             display: flex;
             justify-content: space-between;
             padding: 12px 0;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid var(--gris-claro) ;
         }
 
         .price-item:last-child { border-bottom: none; }
@@ -292,14 +295,16 @@
     <nav>
         
         <div class="logo"> ZAMORA TECH </div>
-        <div class="nav-links">
-            <a href="#inicio">Inicio</a>
-            <a href="#confianza">Confianza</a>
-            <a href="#precios">Precios</a>
-            <a href="#productos">Productos</a>
-            <a href="#portfolios">Portafolios</a>
-            <a href="#contacto">Contacto</a>
-        </div>
+        <nav class="nav-moderno">
+            <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#confianza">Confianza</a></li>
+            <li><a href="#precios" class="active" >Precios</a></li>
+            <li><a href="#productos">Productos</a></li>
+            <li><a href="#portfolios">Portafolios</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
     </nav>
 
     <header class="hero" id="inicio">
@@ -545,46 +550,51 @@
 
         </div>
     </section>
+  
 
-    <footer id="contacto">
-        <div class="footer-grid">
-            <div>
-                <h4>SOBRE ZAMORA TECH</h4>
-                <p>Soporte técnico en repotenciación y mantenimiento preventivo / correctivo de equipos informáticos en Portoviejo.</p>
+    <footer class="footer-moderno" id="contacto">
+        <h2>Contacto</h2>
+        <div class="footer-grid"> 
+            
+            <div class="col">
+               
+                <h3>Sobre Zamora Tech</h3>
+                <p>Soporte técnico aplicada al mantenimiento y optimización de Pcs y Laptops. Elevamos el estándar tecnológico, de la ciudad de Portoviejo.</p>
             </div>
-            <div>
-                <h4>CONTACTO</h4>
+
+            <div class="col">
+               
+                <h3>Información de contacto</h3>
                 <p><i class="fas fa-phone"></i> +593 96 034 4187</p>
                 <p><i class="fas fa-envelope"></i> zamoraintriago.10@gmail.com</p>
                 <p><i class="fas fa-map-marker-alt"></i> Portoviejo, Manabí, Ecuador</p>
             </div>
-            <div>
-                <h4>SÍGUENOS</h4>
-                <div class="social">
-                    <a href="https://www.facebook.com/cztechnology7" target="_blank" CZ Technology="Síguenos en Facebook">
-                        <i class="fab fa-facebook"></i>
-                </a>
-    
-                     <a href="https://www.instagram.com/cztechnology7" target="_blank" CZ Technology="Síguenos en Instagram">
-                <i class="fab fa-instagram"></i>
-                </a>
-    
-                    <a href="https://www.tiktok.com/@_cristhian009" target="_blank" CZ Technology="Síguenos en TikTok">
-                <i class="fab fa-tiktok"></i>
-                </a>
-                </div>
+            <div class="col">
                 
+                <h3>Redes Oficiales</h3>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/@cztechnology7" target="_blank" rel="noopener noreferrer" class="fb"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/cztechnology7" target="_blank" rel="noopener noreferrer" class="ig"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@_cristhian009" target="_blank" rel="noopener noreferrer" class="tk"><i class="fab fa-tiktok"></i></a>
+                </div>
             </div>
         </div>
-        <div style="text-align: center; padding-top: 30px; border-top: 1px solid #333; font-size: 0.8rem;">
-            &copy; 2026 Zamora Tech. Todos los derechos reservados.
+        <div class="footer-bottom">
+
+            <p> &copy; 2026 Zamora Tech | Innovación & Calidad</p>
         </div>
+    
     </footer>
-<a href="https://wa.me/593960344187?text=Hola Zamora Tech,%20necesito%20información%20sobre%20un%20servicio%20técnico." 
-   class="whatsapp-float" 
-   target="_blank">
-    <i class="fab fa-whatsapp my-float"></i>
-</a>
+
+    <a href="https://wa.me/593960344187?text=Hola%20Zamora%20Tech,%20necesito%20ayuda%20con%20mi%20equipo" 
+    class="whatsapp-float" 
+    target="_blank" 
+    rel="noopener noreferrer">
+     <i class="fab fa-whatsapp"></i>
+     <span class="tooltip-wa">¿Necesitas soporte técnico?</span>
+ </a>
+
+
 <script>
     function cambiarImagen(idVisor, rutaImagen) {
         document.getElementById(idVisor).src = rutaImagen;
