@@ -157,3 +157,158 @@
     margin-bottom: 10px;
     font-size: 1.2rem;
 }
+
+
+.footer-moderno {
+    background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
+    color: #e5e7eb;
+    padding: 60px 20px 20px;
+    border-top: 3px solid #FF6600; /* Tu línea naranja de marca */
+}
+
+.footer-bottom {
+    text-align: center; /* Centra el texto */
+    width: 100%;        /* Asegura que ocupe todo el ancho */
+    padding-top: 20px;  /* Espacio superior para que no pegue con lo de arriba */
+    margin-top: 40px;   /* Separación visual de la zona de contactos */
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Una línea divisoria muy fina y profesional */
+    font-size: 14px;    /* Un tamaño sutil */
+    color: #888;        /* Un color gris suave para que no compita con los títulos */
+}
+.social-icons a {
+    display: inline-block;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    transform: translateY(-5px); /* Pequeño salto al pasar el mouse */
+}
+
+.fb { background: #1877F2; color: white; }
+.ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); color: white; }
+.tk { background: #000; color: white; border: 1px solid #ff0050; }
+
+
+/* Contenedor del botón */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+/* Efecto de pulso animado */
+.whatsapp-float::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #25d366;
+    opacity: 0.7;
+    animation: pulse-wa 2s infinite;
+    z-index: -1;
+}
+
+@keyframes pulse-wa {
+    0% { transform: scale(1); opacity: 0.7; }
+    100% { transform: scale(1.6); opacity: 0; }
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    color: #FFF;
+}
+
+/* Etiqueta de texto (Tooltip) que aparece al pasar el mouse */
+.tooltip-wa {
+    visibility: hidden;
+    width: 180px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    right: 125%; 
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.whatsapp-float:hover .tooltip-wa {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Ajuste para celulares */
+@media screen and (max-width: 768px) {
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 25px;
+    }
+}
+
+@keyframes pulse-border {
+    0% { box-shadow: 0 0 0 0 rgba(255, 102, 0, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(255, 102, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 102, 0, 0); }
+}
+
+.nav-moderno ul {
+    display:  inline-flex;
+    list-style: none;
+    gap: 5px;
+    justify-content: center;
+    background: #fff; /* O el color de tu fondo actual */
+    padding: 4px;
+    border-radius: 50px;
+    
+}
+
+.nav-moderno ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-family: 'Arial Black', sans-serif;
+    padding: 10px 20px;
+    border-radius: 10px; /* Bordes suaves */
+    transition: all 0.3s ease; /* Animación fluida */
+    position: relative;
+}
+
+/* Efecto al pasar el mouse (Hover) */
+.nav-moderno ul li a:hover {
+    color: #FF6600; /* Cambia el color del texto a naranja */
+    background-color: rgba(255, 102, 0, 0.1); /* Fondo naranja muy suave */
+    box-shadow: 0 0 15px rgba(255, 102, 0, 0.3); /* La sombra de color naranja que pediste */
+    transform: translateY(-2px); /* Pequeño salto hacia arriba */
+}
+
+/* Efecto al hacer clic o sección activa */
+.nav-moderno ul li a.active, 
+.nav-moderno ul li a:active {
+    background-color: #FF6600; /* Fondo naranja sólido */
+    color: white; /* Texto blanco para contraste */
+    box-shadow: 0 4px 10px rgba(255, 102, 0, 0.5);
+}
